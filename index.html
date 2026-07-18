@@ -862,6 +862,755 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--madder-bright);out
   holder.innerHTML = svg;
 })();
 </script>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fifty Kṛtis — A Case-Study Index · Module II</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+Devanagari:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EEEEE6;
+  --panel:#FFFFFF;
+  --ink:#1A1D1B;
+  --ink-soft:#54564F;
+  --teal:#1F6F6B;
+  --teal-deep:#123F3D;
+  --teal-pale:#DCEBE9;
+  --amber:#C97A2B;
+  --amber-pale:#F5E3CE;
+  --rose:#B4485A;
+  --rose-pale:#F3DEE1;
+  --line:#D7D3C4;
+  --grid-line:#C9C4B2;
+  --display:'Fraunces', serif;
+  --body:'Inter', -apple-system, sans-serif;
+  --mono:'IBM Plex Mono', monospace;
+  --skt:'Noto Serif Devanagari', serif;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--amber-pale);}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+.wrap-narrow{max-width:820px;margin:0 auto;padding:0 28px;}
+a{color:var(--teal-deep);}
+
+/* ================= module banner (links to module I) ================= */
+.module-banner{
+  background:var(--teal-deep);color:#EAF3F2;font-family:var(--mono);font-size:12px;
+  letter-spacing:.04em;padding:9px 0;text-align:center;
+}
+.module-banner a{color:#DFF0EE;text-decoration:underline;}
+
+/* ================= hero ================= */
+.hero{
+  background:var(--ink);color:var(--paper);
+  padding:88px 0 70px;position:relative;overflow:hidden;border-bottom:4px solid var(--teal);
+}
+.wave-strip{position:absolute;left:0;right:0;bottom:-2px;height:60px;opacity:.5;}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--teal-pale);display:flex;align-items:center;gap:10px;margin-bottom:22px;
+}
+.hero-eyebrow .dot{width:7px;height:7px;background:var(--amber);border-radius:50%;display:inline-block;}
+.hero h1{
+  font-family:var(--display);font-weight:600;font-size:clamp(2rem,5vw,3.2rem);line-height:1.14;margin:0 0 18px;color:#fff;
+}
+.hero h1 .skt{display:block;font-family:var(--skt);font-size:.48em;color:var(--teal-pale);font-weight:500;margin-bottom:10px;}
+.hero p.sub{max-width:660px;font-size:1.08rem;color:#C9CBC5;margin:0 0 30px;}
+.hero-stats{display:flex;flex-wrap:wrap;gap:0;border:1px solid rgba(255,255,255,0.14);width:fit-content;}
+.hero-stat{padding:14px 26px;border-right:1px solid rgba(255,255,255,0.14);}
+.hero-stat:last-child{border-right:none;}
+.hero-stat .n{font-family:var(--mono);font-size:1.5rem;color:var(--amber);display:block;}
+.hero-stat .l{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#9EA29C;}
+
+/* ================= disclaimer band ================= */
+.disclaimer{
+  background:var(--rose-pale);border-top:1px solid var(--rose);border-bottom:1px solid var(--rose);padding:20px 0;
+}
+.disclaimer .wrap{display:flex;gap:16px;align-items:flex-start;}
+.disclaimer .tag{
+  font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;background:var(--rose);
+  color:#fff;padding:4px 10px;flex-shrink:0;margin-top:2px;
+}
+.disclaimer p{margin:0;font-size:.92rem;color:#5C1C26;}
+
+/* ================= legend / methodology ================= */
+.legend-section{padding:56px 0 40px;border-bottom:1px solid var(--line);}
+h2.sec-title{font-family:var(--display);font-weight:600;font-size:1.85rem;margin:0 0 8px;}
+h2.sec-title .skt{display:block;font-family:var(--skt);font-size:.5em;color:var(--teal);margin-bottom:6px;font-weight:500;}
+p.sec-intro{color:var(--ink-soft);max-width:720px;margin:14px 0 34px;}
+
+.legend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.legend-card{background:var(--panel);border:1px solid var(--line);padding:18px 20px;}
+.legend-card .lk{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--teal);display:block;margin-bottom:8px;}
+.legend-card h4{margin:0 0 8px;font-family:var(--display);font-size:1.05rem;}
+.legend-card p{margin:0;font-size:.85rem;color:var(--ink-soft);}
+
+.kosha-key{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+.kosha-pill{
+  font-family:var(--mono);font-size:11.5px;padding:7px 12px;border-radius:20px;border:1px solid var(--teal);
+  color:var(--teal-deep);background:var(--teal-pale);
+}
+.evidence-key{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;}
+.ev-chip{font-family:var(--mono);font-size:11px;padding:5px 10px;border:1px solid var(--grid-line);color:var(--ink-soft);}
+.ev-chip.doc{border-color:var(--teal);color:var(--teal-deep);background:var(--teal-pale);}
+.ev-chip.trad{border-color:var(--amber);color:#7A4A15;background:var(--amber-pale);}
+.ev-chip.inf{border-color:var(--rose);color:#6E2530;background:var(--rose-pale);}
+
+/* ================= group nav (filter chips) ================= */
+.group-nav{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--grid-line);padding:14px 0;}
+.group-nav .wrap{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.group-nav .gn-label{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin-right:6px;}
+.chip{
+  font-family:var(--mono);font-size:12px;padding:7px 13px;background:var(--panel);border:1px solid var(--grid-line);
+  cursor:pointer;color:var(--ink-soft);transition:all .15s;
+}
+.chip:hover{border-color:var(--teal);}
+.chip.active{background:var(--teal-deep);color:#fff;border-color:var(--teal-deep);}
+
+/* ================= case group sections ================= */
+.case-group{padding:56px 0 20px;border-bottom:1px solid var(--line);}
+.group-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:6px;}
+.group-num{font-family:var(--mono);font-size:13px;color:var(--amber);letter-spacing:.08em;}
+.group-title{font-family:var(--display);font-weight:600;font-size:1.6rem;margin:0;}
+.group-title .skt{font-family:var(--skt);font-size:.7em;color:var(--teal);margin-right:10px;}
+.group-count{font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:var(--teal-pale);padding:3px 9px;border-radius:12px;}
+.group-note{color:var(--ink-soft);max-width:760px;margin:14px 0 28px;font-size:.95rem;}
+
+/* ================= case cards ================= */
+.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:10px;}
+.case-card{
+  background:var(--panel);border:1px solid var(--grid-line);padding:0;position:relative;
+  border-left:4px solid var(--card-accent, var(--teal));
+}
+.case-card .cc-head{padding:14px 16px 10px;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;gap:10px;}
+.case-card .cc-id{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);}
+.case-card .cc-name{font-family:var(--display);font-weight:600;font-size:1.08rem;margin:4px 0 0;}
+.case-card .cc-name .skt{display:block;font-family:var(--skt);font-size:.85em;color:var(--teal-deep);font-weight:500;}
+.case-card .cc-evtag{align-self:flex-start;font-family:var(--mono);font-size:9.5px;text-transform:uppercase;padding:3px 7px;white-space:nowrap;height:fit-content;}
+.cc-evtag.doc{background:var(--teal-pale);color:var(--teal-deep);}
+.cc-evtag.trad{background:var(--amber-pale);color:#7A4A15;}
+.cc-evtag.inf{background:var(--rose-pale);color:#6E2530;}
+.case-card .cc-body{padding:12px 16px 16px;}
+.cc-row{display:flex;font-size:.83rem;margin:5px 0;gap:8px;}
+.cc-row .k{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);min-width:88px;flex-shrink:0;padding-top:2px;}
+.cc-row .v{color:var(--ink);}
+.cc-row .v.mono{font-family:var(--mono);color:var(--teal-deep);}
+.cc-note{
+  margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-soft);
+}
+.cc-note b{color:var(--ink);font-weight:600;}
+.kosha-tag{
+  display:inline-block;font-family:var(--mono);font-size:9.5px;padding:2px 7px;background:var(--ink);color:#fff;
+  border-radius:9px;margin-right:4px;
+}
+
+/* ================= cross-cutting synthesis ================= */
+.synth{padding:70px 0;border-bottom:1px solid var(--line);}
+.stat-row{display:flex;flex-wrap:wrap;gap:16px;margin:30px 0;}
+.stat-box{flex:1;min-width:200px;background:var(--panel);border:1px solid var(--line);padding:20px;}
+.stat-box .sn{font-family:var(--mono);font-size:1.9rem;color:var(--teal-deep);display:block;}
+.stat-box .sl{font-size:.85rem;color:var(--ink-soft);margin-top:4px;}
+.bar-chart{margin:26px 0;}
+.bar-row{display:flex;align-items:center;gap:12px;margin:8px 0;}
+.bar-label{font-family:var(--mono);font-size:11.5px;width:150px;flex-shrink:0;color:var(--ink-soft);text-align:right;}
+.bar-track{flex:1;background:var(--line);height:20px;position:relative;}
+.bar-fill{background:var(--teal);height:100%;display:flex;align-items:center;}
+.bar-fill span{font-family:var(--mono);font-size:10.5px;color:#fff;padding-left:8px;}
+
+/* ================= closing ================= */
+.closing{background:var(--teal-deep);color:#EAF3F2;padding:80px 0 60px;}
+.closing h2{font-family:var(--display);font-size:1.9rem;color:#fff;margin-bottom:16px;}
+.closing p{color:#C9DCDA;max-width:700px;}
+.closing .link-back{
+  display:inline-block;margin-top:24px;font-family:var(--mono);font-size:13px;color:var(--amber);
+  border:1px solid var(--amber);padding:10px 18px;text-decoration:none;
+}
+.bib-mini{list-style:none;padding:0;margin:26px 0 0;font-size:.85rem;color:#AEC4C1;}
+.bib-mini li{padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.1);}
+
+@media (max-width:640px){
+  .hero{padding:64px 0 50px;}
+  .case-grid{grid-template-columns:1fr;}
+  .group-nav .wrap{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;}
+}
+a:focus-visible, button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="module-banner">Module II of a two-part study · Module I — <a href="#">Rasautpatti, Kāvyotpatti, Nāṭyotpatti: Genesis &amp; Mechanics</a> — establishes the theory this index applies</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow"><span class="dot"></span>Field index · fifty compositions, one composer, one open question</div>
+    <h1><span class="skt">पञ्चाशत् कृतयः</span>Fifty Kṛtis — A Case-Study Index</h1>
+    <p class="sub">Where Module I built the theory — rasa mechanics, the sapta-svara substrate, the pañca-kośa reading of Dīkṣitar's method — this second module tests it against fifty specific, individually sourced compositions, indexed the way a case series is indexed: by rāga, tāḷa, kośa-emphasis, and the honest evidentiary weight behind each therapeutic association. The open-ended standing Module I argued for is kept open here on purpose — every case closes with a question, not a prescription.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="n">50</span><span class="l">Kṛtis indexed</span></div>
+      <div class="hero-stat"><span class="n">6</span><span class="l">Thematic groups</span></div>
+      <div class="hero-stat"><span class="n">27</span><span class="l">Distinct rāgas</span></div>
+      <div class="hero-stat"><span class="n">3</span><span class="l">Evidence tiers</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="disclaimer">
+  <div class="wrap">
+    <span class="tag">Read first</span>
+    <p>Nothing in this index is medical advice, and no entry below should be read as a validated treatment for a named neurological or psychiatric condition. Where a "neuro-relevance" note appears, it states either (a) a specific documented research finding tied to that exact rāga or rāga-family, or (b) a structural inference from the composition's own tempo/interval/tāḷa properties, clearly labelled as such. Anyone managing a real neurological or mental-health condition should treat this material as complementary, alongside professional care — never in place of it.</p>
+  </div>
+</div>
+
+<!-- ================= METHODOLOGY / LEGEND ================= -->
+<section class="legend-section">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="skt">पद्धतिः</span>Reading the index</h2>
+    <p class="sec-intro">Each of the fifty entries below is drawn from one of six documented compositional groups within Dīkṣitar's roughly 450–500 surviving kṛtis — chosen because each group is a genuine case-study set in its own right, composed with a stated organizing logic (a deity's nine planetary forms, nine enclosures of a yantra, five elemental Śiva-liṅgas, and so on), rather than being an arbitrary "greatest hits" list. Every rāga, tāḷa, and grouping fact below is drawn from published musicological sources — see the bibliography at the close. Where a field is genuinely uncertain across sources, it is marked rather than guessed.</p>
+
+    <div class="legend-grid">
+      <div class="legend-card">
+        <span class="lk">Field · Kośa emphasis</span>
+        <h4>Which sheath the composition foregrounds</h4>
+        <p>Per the pañca-kośa reading developed in Module I §6.1 — which of the five layers (physical/breath/mind/intellect/bliss) the composition's own formal choices lean on hardest. Most kṛtis engage several; the tag marks the dominant one.</p>
+      </div>
+      <div class="legend-card">
+        <span class="lk">Field · Evidence tier</span>
+        <h4>How solid the neuro-relevance claim is</h4>
+        <p>Documented = a specific published study exists on this exact rāga or a very close relative. Traditional = a rasa/therapeutic attribution from the rāga-chikitsā or classical rasa literature, not lab-tested. Inference = reasoned from the composition's own tempo/structure, per Module I's Part VII caution against overclaiming.</p>
+      </div>
+      <div class="legend-card">
+        <span class="lk">Field · Structural note</span>
+        <h4>What Dīkṣitar himself was doing</h4>
+        <p>The compositional device — rāga-mudra, vibhakti case-ending, tāḷa choice, prati/śuddha-madhyama split — that ties the entry back to the systematic architecture Module I described in Parts IV–VI.</p>
+      </div>
+    </div>
+
+    <div class="kosha-key">
+      <span class="kosha-pill">ANNA — body / breath-support</span>
+      <span class="kosha-pill">PRĀṆA — vitality / gamaka-pacing</span>
+      <span class="kosha-pill">MANAS — mind / emotion / rasa</span>
+      <span class="kosha-pill">VIJÑĀNA — intellect / mudra-recognition</span>
+      <span class="kosha-pill">ĀNANDA — bliss / raw nāda</span>
+    </div>
+    <div class="evidence-key">
+      <span class="ev-chip doc">● DOCUMENTED — study exists on this rāga/family</span>
+      <span class="ev-chip trad">● TRADITIONAL — rasa-śāstra / rāga-chikitsā attribution</span>
+      <span class="ev-chip inf">● INFERENCE — reasoned from structure, untested</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GROUP FILTER NAV ================= -->
+<nav class="group-nav">
+  <div class="wrap">
+    <span class="gn-label">Jump to group</span>
+    <a class="chip" href="#g1">I · Mahā Gaṇapati (14)</a>
+    <a class="chip" href="#g2">II · Navagraha (9)</a>
+    <a class="chip" href="#g3">III · Kamalāmbā Navāvaraṇa (11)</a>
+    <a class="chip" href="#g4">IV · Pañcabhūta Liṅga (5)</a>
+    <a class="chip" href="#g5">V · Guruguha Vibhakti (3)</a>
+    <a class="chip" href="#g6">VI · Individual kṣetra kṛtis (8)</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= GROUP I — MAHA GANAPATI ================= -->
+<section class="case-group" id="g1">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP I</span>
+      <h2 class="group-title"><span class="skt">महागणपतिकृतयः</span>Mahā Gaṇapati Kṛtis</h2>
+      <span class="group-count">14 entries</span>
+    </div>
+    <p class="group-note">Twenty-seven Dīkṣitar kṛtis honour Gaṇapati in and around Tiruvārūr, sixteen of them the <em>ṣoḍaśa</em> ("sixteen-form") set matching sixteen canonical iconographic forms of the deity. The fourteen below are the most frequently performed subset. As a group they function as a graded pedagogical sequence — the presiding deity of beginnings is, fittingly, the deity Dīkṣitar's students encounter first, and the set spans an unusually wide rāga palette for a single-deity cycle, from the foundational Māyāmāḷavagauḷa-family Sāvēri to the rare Kāśīrāmakriyā.</p>
+
+    <div class="case-grid">
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.01</span><div class="cc-name">Ucchiṣṭa Gaṇapatau</div></div><span class="cc-evtag trad">TRAD</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Kāśīrāmakriyā (Kāmavardhani/Pantuvarāḷi family)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Ādi</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span><span class="kosha-tag">VIJÑĀNA</span></span></div>
+        <div class="cc-note">Opens the set on the most esoteric of the sixteen forms; a prati-madhyama rāga of grave, contemplative character, traditionally associated with weighty, inward rasa rather than festive energy.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.02</span><div class="cc-name">Ekadantam</div></div><span class="cc-evtag trad">TRAD</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Bilahari</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Miśra Cāpu</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">Bilahari's bright, ascending-emphasis contour is traditionally read as utsāha-leaning (energetic/heroic); a common concert-opening rāga.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.03</span><div class="cc-name">Gajānanāyutaṁ</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Vegavāhini (Cakravākam)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Catuśra Ēka</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">PRĀṆA</span></span></div>
+        <div class="cc-note">Cakravākam is documented as evoking devotion, sympathy, and compassion in listeners across multiple lakṣaṇa sources — a rare case where the rāga's own traditional character description is unusually specific.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.04</span><div class="cc-name">Gaṇanāyakaṁ</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Rudrapriya</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Ādi</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">VIJÑĀNA</span></span></div>
+        <div class="cc-note">A comparatively rare rāga choice for a Gaṇapati kṛti; the unusual pairing itself functions as a vijñānamaya-layer reward for a listener who recognizes the deviation from the expected.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.05</span><div class="cc-name">Gaṇarājēna</div></div><span class="cc-evtag trad">TRAD</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Ārabhi (mela 29)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Miśra Cāpu</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">Ārabhi is one of the ghana-rāgas — traditionally the "weighty/solid" rāga class used for tānam-elaboration, associated with a settled, grounded rasa suited to invocatory openings.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.06</span><div class="cc-name">Gaṇeśa Kumāra</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Jañjūṭi (Cenjuruṭi)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Catuśra Ēka</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">A folk-adjacent, accessible rāga — the structural inference is that its comparative melodic simplicity favours the manomaya layer (direct emotional legibility) over the vijñānamaya layer (technical density).</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.07</span><div class="cc-name">Karikaḷabha</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Sāvēri</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpakam</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">PRĀṆA</span></span></div>
+        <div class="cc-note">Sāvēri's audava (pentatonic-leaning) ascent and slow, dignified traditional treatment make it a common choice for meditative, breath-paced openings across the wider Trinity repertoire, not only Dīkṣitar's.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.08</span><div class="cc-name">Pañcamātaṅga</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Māḷahari</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpakam</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">ANNA</span></span></div>
+        <div class="cc-note">Māḷahari is the very first rāga taught to beginning students in the Karṇāṭaka pedagogical sequence — its use here is annamaya-facing in the most literal sense: it is the rāga through which the physical technique of singing is first built.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.09</span><div class="cc-name">Mahā Gaṇapatiṁ Mānasa</div></div><span class="cc-evtag trad">TRAD</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Naṭa</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Miśra Cāpu</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">Naṭa is another ghana-rāga; its own name (etymologically linked to "drama/dance") is traditionally paired with vīra rasa and forthright, declamatory delivery.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.10</span><div class="cc-name">Mahā Gaṇapatiṁ</div></div><span class="cc-evtag trad">TRAD</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Tōḍi (mela 8)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpakam</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span><span class="kosha-tag">ĀNANDA</span></span></div>
+        <div class="cc-note">Tōḍi is Dīkṣitar's own choice for the Navāvaraṇa dhyāna kṛti (Module I §6.2) — its recurrence here, in a completely unrelated cycle, suggests it functioned across his oeuvre as a default "settling/threshold" rāga rather than a deity-specific one.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.11</span><div class="cc-name">Mahā Gaṇapate</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Naṭanārāyaṇi</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Ādi</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">VIJÑĀNA</span></span></div>
+        <div class="cc-note">A less common rāga name-checking two ghana-rāgas (Naṭa + Nārāyaṇagauḷa lineage) in its own title — an intellectual, mudra-adjacent pun typical of the vijñānamaya-facing entries in this set.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.12</span><div class="cc-name">Rakta Gaṇapatiṁ</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Mōhanaṁ</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Ādi</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">Mōhanaṁ is a five-note (audava-audava) rāga near-universally read as bright, uncomplicated, and joy-leaning across the whole South Indian repertoire — one of the least ambiguous rasa-attributions in this entire index.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.13</span><div class="cc-name">Lambōdarāya</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Vāraḷi</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Khaṇḍa Cāpu</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">VIJÑĀNA</span></span></div>
+        <div class="cc-note">Vāraḷi is a vivādi-adjacent, technically demanding rāga; the choice of the irregular 5-beat khaṇḍa cāpu alongside it doubles the intellectual/technical demand placed on both performer and listener.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">I.14</span><div class="cc-name">Vallabha Nāyakasya</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Bēgaḍa</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpakam</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">Bēgaḍa is traditionally regarded as an unusually "sweet," accessible rāga, frequently chosen to close a concert precisely for its unforced, settling emotional quality.</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GROUP II — NAVAGRAHA ================= -->
+<section class="case-group" id="g2">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP II</span>
+      <h2 class="group-title"><span class="skt">नवग्रहकृतयः</span>Navagraha Kṛtis</h2>
+      <span class="group-count">9 entries</span>
+    </div>
+    <p class="group-note">Covered structurally in Module I Part V.1; indexed here individually. This is the single group in the index with the clearest documented origin as an applied-health intervention — the set began as a response to a disciple's stomach ailment, treated by prescribing a specific kṛti to be sung for a fixed period, and only afterward expanded into the full nine-planet cycle. All nine together span all seven Sūlādi Sapta Tāḷa.</p>
+
+    <div class="case-grid">
+      <div class="case-card" style="--card-accent:#C97A2B"><div class="cc-head"><div><span class="cc-id">II.01 · Sun</span><div class="cc-name">Sūryamūrtē Namōstutē</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Saurāṣṭram (janya of mela 15)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Catuśra Dhruva</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span><span class="kosha-tag">VIJÑĀNA</span></span></div>
+        <div class="cc-note">Rasa is architecturally split section-by-section — pūrvāṅga carries bhakti, uttarāṅga carries vīra — the clearest documented case in the entire oeuvre of rasa assigned by formal position rather than left to the words alone.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#C97A2B"><div class="cc-head"><div><span class="cc-id">II.02 · Moon</span><div class="cc-name">Candraṁ Bhaja Mānasa</div></div><span class="cc-evtag trad">TRAD</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Āsāvēri (mela 8, bhāṣāṅga)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Catuśra Maṭya</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">PRĀṆA</span></span></div>
+        <div class="cc-note">A cooling, contemplative rāga chosen to mirror the Moon's mind-soothing character in Vedic cosmology; the sāhitya's own opening word, "mānasa" (mind), makes the manomaya address explicit rather than implicit.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#C97A2B"><div class="cc-head"><div><span class="cc-id">II.03 · Mars</span><div class="cc-name">Aṅgārakam Āśrayāmyahaṁ</div></div><span class="cc-evtag trad">TRAD</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Suraṭi</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpaka</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">PRĀṆA</span><span class="kosha-tag">ANNA</span></span></div>
+        <div class="cc-note">The sāhitya itself glosses Aṅgāraka's own bodily attributes (red limbs, red garments) at length — an annamaya-facing text riding on a rāga traditionally read as vigorous rather than aggressive, in keeping with Dīkṣitar's habit of tempering a fierce graha with a gentler musical setting.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#C97A2B"><div class="cc-head"><div><span class="cc-id">II.04 · Mercury</span><div class="cc-name">Budhaṁ Āśrayāmi</div></div><span class="cc-evtag trad">TRAD</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Nāṭakuranji</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Miśra Jhampa</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">Nāṭakuranji is a classic <em>rakti</em> rāga — one prized specifically for its capacity to move an audience emotionally — and the tender, soft-worded sāhitya ("kamanīyatara mithuna kanyādhipam") is explicitly noted in the musicological source literature as suited to the rāga's mood.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#C97A2B"><div class="cc-head"><div><span class="cc-id">II.05 · Jupiter</span><div class="cc-name">Bṛhaspatē Tārāpatē</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Aṭhāṇā (bhāṣāṅga, mela 28/29 border)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Tisra Triputa</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">ĀNANDA</span></span></div>
+        <div class="cc-note">The origin-composition of the entire Navagraha set — prescribed, sung for a fixed period, and documented as coinciding with the disciple's recovery. This is the one entry in the whole fifty-kṛti index with a directly recorded before/after outcome, and it is precisely because of that specificity that it should be read as an anecdote, not a clinical trial: one case, no control, no blinding.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#C97A2B"><div class="cc-head"><div><span class="cc-id">II.06 · Venus</span><div class="cc-name">Śrī Śukra Bhagavantaṁ</div></div><span class="cc-evtag trad">TRAD</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Paraju (Parāju/Paras)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Khaṇḍa Aṭa</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">Venus/Śukra governs love, beauty, and the arts in the tradition; the rāga choice is traditionally read as śṛṅgāra-leaning in keeping with the graha's own character.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#C97A2B"><div class="cc-head"><div><span class="cc-id">II.07 · Saturn</span><div class="cc-name">Divākaratanujaṁ Śanaiścaraṁ</div></div><span class="cc-evtag trad">TRAD</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Yadukulakāmbhōji</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Catuśra Ēka</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">ANNA</span></span></div>
+        <div class="cc-note">Śani/Saturn is traditionally the most feared graha astrologically, yet Yadukulakāmbhōji is one of the gentlest, most consoling rāgas in the repertoire — a deliberate softening choice, the same logic Sūryamūrtē's own pūrvāṅga/uttarāṅga split demonstrates elsewhere in this group.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#C97A2B"><div class="cc-head"><div><span class="cc-id">II.08 · Rāhu</span><div class="cc-name">Smarāmyahaṁ Sadā Rāhuṁ</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Rāmapriya (Rāmamanōhari, mela 52, prati-madhyama)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpaka</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">VIJÑĀNA</span></span></div>
+        <div class="cc-note">One of two "chāyā-graha" (shadow planet) entries deliberately drawn from the prati-madhyama half of the 72-mela wheel — the mela+36 structural doubling from Module I §4.1 used as an ontological marker for a bodiless deity.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#C97A2B"><div class="cc-head"><div><span class="cc-id">II.09 · Ketu</span><div class="cc-name">Mahāsuraṁ Kētumahaṁ</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Ṣaṇmukhapriya (Cāmaram, mela 56, prati-madhyama)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpaka</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">VIJÑĀNA</span></span></div>
+        <div class="cc-note">Completes the Rāhu/Ketu structural pairing. Musicological tradition holds the final two kṛtis of this set were likely completed by Dīkṣitar's followers under his signature rather than by his own hand — worth noting precisely because it shows the "systematic" quality of the set was recognisable and continuable by his school, not a one-off flourish.</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GROUP III — KAMALAMBA NAVAVARNA ================= -->
+<section class="case-group" id="g3">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP III</span>
+      <h2 class="group-title"><span class="skt">कमलाम्बा नवावरणकृतयः</span>Kamalāmbā Navāvaraṇa Kṛtis</h2>
+      <span class="group-count">11 entries</span>
+    </div>
+    <p class="group-note">Eleven kṛtis — a dhyāna kṛti (Module I §6.2), nine core āvaraṇa compositions mapped one-to-one onto the nine enclosures of the Śrī Cakra, and a closing maṅgala kṛti — each core composition additionally assigned a distinct Sanskrit grammatical case (vibhakti), so that the set is simultaneously a musical, tantric, and grammatical curriculum. Tāḷa attributions for avaraṇas six through eight are less consistently documented across sources than the others and are marked accordingly.</p>
+
+    <div class="case-grid">
+      <div class="case-card" style="--card-accent:#B4485A"><div class="cc-head"><div><span class="cc-id">III.00 · Dhyāna</span><div class="cc-name">Kamalāmbike Āśrita Kalpalatike</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Tōḍi (mela 8)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpaka</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">ĀNANDA</span></span></div>
+        <div class="cc-note">Vocative case. The one kṛti in the set that deliberately omits the rāga-mudra — see Module I §6.2's induction-phase reading.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B4485A"><div class="cc-head"><div><span class="cc-id">III.01 · Bhūpura</span><div class="cc-name">Kamalāmba Samrakṣatu Mām</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Ānandabhairavi</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Miśra Cāpu</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">Nominative case; jāgrata (waking) state of the aspirant per the Śrī Cakra correspondence. Rāga-mudra given only partially, via the word "ānanda."</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B4485A"><div class="cc-head"><div><span class="cc-id">III.02 · Ṣoḍaśadala</span><div class="cc-name">Kamalāmbāṁ Bhajarē</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Kalyāṇi (mela 65, prati-madhyama)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Ādi</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span><span class="kosha-tag">ĀNANDA</span></span></div>
+        <div class="cc-note">Accusative case; svapna (dream) state. Kalyāṇi's expansive, majestic character is among the most consistently agreed-upon rasa attributions in the entire Karṇāṭaka repertoire.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B4485A"><div class="cc-head"><div><span class="cc-id">III.03 · Sarvasaṁkṣobhaṇa</span><div class="cc-name">Śrī Kamalāmbikayāḥ Parāṁ</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Śaṅkarābharaṇaṁ (mela 29)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Ādi</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">VIJÑĀNA</span></span></div>
+        <div class="cc-note">Instrumental case. Rāga-mudra given only partially (the word "śaṅkara") — the second of only two kṛtis in the whole set with a deliberately concealed mudra.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B4485A"><div class="cc-head"><div><span class="cc-id">III.04 · Sarvasaubhāgyadāyaka</span><div class="cc-name">Śrī Kamalāmbikāyai</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Kāmbhōji (mela 28 janya, bhāṣāṅga)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Aṭa (14 beats — a deliberately rare, technically demanding choice)</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">VIJÑĀNA</span><span class="kosha-tag">ANNA</span></span></div>
+        <div class="cc-note">Dative case. The unusually long Aṭa tāḷa cycle, reserved for only this and the Bhairavi entry below, places heavy demand on breath and metric endurance — an annamaya-level technical test embedded in the sequence.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B4485A"><div class="cc-head"><div><span class="cc-id">III.05 · Sarvārthasādhaka</span><div class="cc-name">Śrī Kamalāmbikāyāḥ</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Bhairavi (mela 20 janya)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Miśra Jhampa (10 beats — similarly rare)</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">Ablative case. Bhairavi is one of the most emotionally intense rāgas in the repertoire, traditionally read as spanning karuṇa through to a grave, almost bībhatsa-adjacent depth.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B4485A"><div class="cc-head"><div><span class="cc-id">III.06 · Sarvarakṣākara</span><div class="cc-name">(Genitive-case avaraṇa kṛti)</div></div><span class="cc-evtag trad">TRAD</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Punnāgavarāḷi (rare bhāṣāṅga, mela 45 janya)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">not consistently documented across sources consulted</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">Musicological sources agree Punnāgavarāḷi appears in this set but are inconsistent on the exact avaraṇa number and tāḷa; included here with that uncertainty flagged rather than resolved by guesswork.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B4485A"><div class="cc-head"><div><span class="cc-id">III.07 · Sarvarogahara</span><div class="cc-name">(Locative-case avaraṇa kṛti)</div></div><span class="cc-evtag trad">TRAD</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Sahāna (janya, audava-ṣāḍava)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">not consistently documented across sources consulted</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">Sources describe this rāga's treatment here as melancholic with a rṣabha (Ri) emphasis; the avaraṇa's own name — "remover of all disease" — makes this the single most direct textual link in the entire fifty-kṛti index between a composition and a health claim, and it is worth being exact about what kind of claim it is: a devotional epithet of the Goddess's protective power, not a clinical statement about the music itself.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B4485A"><div class="cc-head"><div><span class="cc-id">III.08 · Sarvasiddhiprada</span><div class="cc-name">(Avaraṇa kṛti, eighth enclosure)</div></div><span class="cc-evtag trad">TRAD</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Ghaṇṭā (rare janya of mela 28)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">not consistently documented across sources consulted</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">VIJÑĀNA</span></span></div>
+        <div class="cc-note">Described in the source literature as having a "bell-like" resonant quality — an unusually literal instance of a rāga's character being read directly off its acoustic effect rather than its emotional association.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B4485A"><div class="cc-head"><div><span class="cc-id">III.09 · Sarvānandamaya</span><div class="cc-name">Śrī Kamalāmbikayā Kaṭākṣitohaṁ</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Āhiri (mela 22 janya, vakra)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">documented but not independently re-verified for this index</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">ĀNANDA</span></span></div>
+        <div class="cc-note">Deploys <em>all eight</em> Sanskrit vibhakti cases in a single composition, and Āhiri is documented as using notes spanning all 22 śruti of the octave — read in the tradition itself as a musical enactment of the Advaitic "aham brahmāsmi" (I am the Absolute), the ninth-tier resolution of the whole set's grammatical and tonal logic simultaneously. The clearest single instance in this entire index of Tier-2 combinatorial mathematics (Module I Part IV) and Tier-1 metaphysics (Module I Part I) fused into one formal decision.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B4485A"><div class="cc-head"><div><span class="cc-id">III.10 · Maṅgala</span><div class="cc-name">Śrī Kamalāmbike Śivē Pāhimāṁ</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Śrī rāga</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Khaṇḍa Ēka</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">ĀNANDA</span></span></div>
+        <div class="cc-note">Closing composition — the deliberate short, auspicious counterpart to the dhyāna kṛti's induction, completing the three-part protocol structure described in Module I §6.2.</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GROUP IV — PANCHABHUTA LINGA ================= -->
+<section class="case-group" id="g4">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP IV</span>
+      <h2 class="group-title"><span class="skt">पञ्चभूतलिङ्गकृतयः</span>Pañcabhūta Liṅga Kṛtis</h2>
+      <span class="group-count">5 entries</span>
+    </div>
+    <p class="group-note">Composed at the five Śaiva temples where Śiva is worshipped as one of the five gross elements — ether, air, fire, earth, water — this is the group whose organizing principle maps most directly onto the annamaya kośa (the sheath of gross matter) from Module I's framework, since its entire premise is elemental embodiment. Also called the Bhūloka Pañcaliṅga kṛtis, to distinguish them from a smaller secondary set of five liṅga kṛtis Dīkṣitar composed within Tiruvārūr itself.</p>
+
+    <div class="case-grid">
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.01 · Ākāśa</span><div class="cc-name">Ānanda Naṭana Prakāśaṁ</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Kēdāram</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Miśra Cāpu</span></div>
+        <div class="cc-row"><span class="k">Temple</span><span class="v">Cidambaram — Naṭarāja as cosmic dancer in ether</div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">ĀNANDA</span></span></div>
+        <div class="cc-note">The sāhitya explicitly locates the dance within <em>dahara-ākāśa</em> — the "space within the heart" — making this the index's most direct textual instance of an ānandamaya (bliss-sheath) address: the element being invoked is space itself, mapped onto interior awareness rather than the physical sky.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.02 · Vāyu</span><div class="cc-name">Śrī Kālahastīśa</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Huśēni</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Jhampa</span></div>
+        <div class="cc-row"><span class="k">Temple</span><span class="v">Śrīkāḷahasti — Śiva as wind</div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">PRĀṆA</span></span></div>
+        <div class="cc-note">The air/wind element is the most direct possible textual pairing with prāṇa (breath, the vital-air kośa) in the entire index — the composition's own subject matter is, almost literally, breath.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.03 · Agni</span><div class="cc-name">Aruṇācalanāthaṁ</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Sāraṅga</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpakam</span></div>
+        <div class="cc-row"><span class="k">Temple</span><span class="v">Tiruvaṇṇāmalai — Śiva as fire</div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">PRĀṆA</span><span class="kosha-tag">ANNA</span></span></div>
+        <div class="cc-note">The sāhitya identifies the deity here as <em>tejomaya-liṅga</em> (the effulgence-form liṅga) — fire read as transformative heat/vitality rather than as destruction, consistent with a prāṇamaya rather than a raudra-rasa framing.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.04 · Pṛthvī</span><div class="cc-name">Cintayāma Kanda</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Bhairavi</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpakam</span></div>
+        <div class="cc-row"><span class="k">Temple</span><span class="v">Kāñcīpuram — Śiva as earth (Ēkāmranātha)</div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">ANNA</span></span></div>
+        <div class="cc-note">Bhairavi's own gravity and groundedness is traditionally read as apt for pṛthvī (earth) — the same rāga used for the "ablative" Kamalāmbā entry above, suggesting Dīkṣitar treated Bhairavi as his default rāga for weight and solidity generally, across unrelated cycles.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.05 · Ap (water)</span><div class="cc-name">Jambūpatē</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Yamunākalyāṇi</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpakam (cited as Tisra Ēka in one source; not fully reconciled here)</span></div>
+        <div class="cc-row"><span class="k">Temple</span><span class="v">Tiruvāṉaikkāval, near Tiruchirāppaḷḷi — Śiva as water (Appu-liṅga)</div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">ANNA</span><span class="kosha-tag">PRĀṆA</span></span></div>
+        <div class="cc-note">The rāga name itself ("Yamunā" — a river) is a direct sonic pun on the water element being invoked, the same rāga-mudra logic Module I documented in Sūryamūrtē — here applied to an element rather than a planet.</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GROUP V — GURUGUHA VIBHAKTI ================= -->
+<section class="case-group" id="g5">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP V</span>
+      <h2 class="group-title"><span class="skt">गुरुगुहविभक्तिकृतयः</span>Guruguha Vibhakti Kṛtis</h2>
+      <span class="group-count">3 entries (of a larger set)</span>
+    </div>
+    <p class="group-note">Composed at Tiruttaṇi, this set maps Dīkṣitar's own signature deity — Subrahmaṇya/Guruguha — onto the eight Sanskrit grammatical cases, the same vibhakti-mapping device used for Kamalāmbā above. Only the first three are confidently sourced here for this index; the remainder of the set is documented elsewhere but not independently re-verified for these entries.</p>
+
+    <div class="case-grid">
+      <div class="case-card" style="--card-accent:#C97A2B"><div class="cc-head"><div><span class="cc-id">V.01 · Nominative</span><div class="cc-name">Śrī Nāthādi Guruguho Jayati</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Māyāmāḷavagauḷa (mela 15)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Ādi</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">ANNA</span></span></div>
+        <div class="cc-note">Dīkṣitar's very first composition, by his own and his students' account — fittingly set in the pedagogical root scale, the same mela that underlies Saurāṣṭram in the Navagraha set. Contains the prathamākṣara-prāsa device discussed in Module I §6.3, each line opening on the same syllable.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#C97A2B"><div class="cc-head"><div><span class="cc-id">V.02 · Accusative</span><div class="cc-name">Mānasa Guruguha Rūpaṁ Bhajarē</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Ānandabhairavi</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpaka</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">"Mānasa" (mind) opens the text directly, exactly as in the Navagraha Moon kṛti above — the second instance in this index of Dīkṣitar using that word as a literal manomaya-kośa address at the very start of a composition.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#C97A2B"><div class="cc-head"><div><span class="cc-id">V.03 · Instrumental</span><div class="cc-name">Śrī Guruṇā Pālitosmi</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Paḍi</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpaka</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">VIJÑĀNA</span></span></div>
+        <div class="cc-note">A rarely-used rāga; its scarcity in the wider repertoire is itself the vijñānamaya-facing feature — a listener's recognition of an unusual rāga choice is a distinct cognitive event from simply feeling the piece's mood.</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GROUP VI — INDIVIDUAL KSHETRA KRITIS ================= -->
+<section class="case-group" id="g6">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP VI</span>
+      <h2 class="group-title"><span class="skt">प्रसिद्धस्वतन्त्रकृतयः</span>Individual and Kṣetra Kṛtis</h2>
+      <span class="group-count">8 entries</span>
+    </div>
+    <p class="group-note">Eight of Dīkṣitar's most frequently performed standalone compositions — outside the formal cycles above, but no less structurally deliberate. Included to round the index to fifty and to show that the same devices (rāga-mudra, mela-family logic, tempo-as-kośa-address) recur even where no larger organizing cycle binds the composition to its neighbours.</p>
+
+    <div class="case-grid">
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">VI.01</span><div class="cc-name">Vātāpi Gaṇapatiṁ</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Haṁsadhvani (asampūrṇa mela)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Ādi</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span><span class="kosha-tag">VIJÑĀNA</span></span></div>
+        <div class="cc-note">Almost certainly Dīkṣitar's single most-performed composition worldwide; Haṁsadhvani's crisp, five-note ascent is near-universally read as bright and auspicious — the traditional first-choice rāga for a concert opener across the entire Karṇāṭaka tradition, not only in this composer's output.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">VI.02</span><div class="cc-name">Śrī Subrahmaṇyāya Namastē</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Kāmbhōji (mela 28)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpaka</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">Kāmbhōji is traditionally counted among the ghana-rāgas and carries a wide, heroic-to-devotional emotional range — one of the most flexible single rāgas in the whole system for rasa purposes.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">VI.03</span><div class="cc-name">Akṣayaliṅga Vibhō</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Sahāna</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Ādi</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">PRĀṆA</span></span></div>
+        <div class="cc-note">A Tiruvārūr temple kṛti; Sahāna's characteristic slow gamaka-work on the lower octave is a textbook instance of the prāṇamaya-facing, breath-paced gamaka technique described generally in Module I §5.3.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">VI.04</span><div class="cc-name">Bālagōpāla</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Bhairavi (mela 20 janya)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Ādi</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">The third distinct Bhairavi entry in this index (see III.05 and IV.04) — across three unrelated cycles, Dīkṣitar returns to this rāga whenever the subject calls for depth and emotional weight, which is itself an observable pattern rather than a coincidence.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">VI.05</span><div class="cc-name">Mīnākṣī Mē Mudaṁ Dēhi</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Pūrvikalyāṇi</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Ādi</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span><span class="kosha-tag">ĀNANDA</span></span></div>
+        <div class="cc-note">Composed at Madurai for the goddess Mīnākṣī; Pūrvikalyāṇi's near-neighbour relationship to Kalyāṇi in the mela system gives it a related, though distinctly softer, expansive-and-tender character.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">VI.06</span><div class="cc-name">Śrī Sarasvatī Namōstutē</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Ārabhi (mela 29)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Rūpaka</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">VIJÑĀNA</span></span></div>
+        <div class="cc-note">Addressed to the goddess of learning and music itself; a ghana-rāga treatment appropriate to the intellectually self-referential subject matter.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">VI.07</span><div class="cc-name">Ānandāmṛtakarṣiṇī</div></div><span class="cc-evtag doc">DOC</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Amṛtavarṣiṇī (asampūrṇa mela, janya of 66)</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Ādi</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">ĀNANDA</span></span></div>
+        <div class="cc-note">A rāga whose very name means "rain of nectar," traditionally associated in performance lore (not laboratory-tested) with literally inducing rainfall when sung with sufficient mastery — the single clearest instance in this index of a purely traditional (not evidentiary) claim, flagged as such rather than repeated uncritically.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">VI.08</span><div class="cc-name">Śrī Raṅganāthaṁ</div></div><span class="cc-evtag inf">INF</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga</span><span class="v mono">Nāyaki</span></div>
+        <div class="cc-row"><span class="k">Tāḷa</span><span class="v mono">Ādi</span></div>
+        <div class="cc-row"><span class="k">Kośa</span><span class="v"><span class="kosha-tag">MANAS</span></span></div>
+        <div class="cc-note">Composed for the reclining Viṣṇu at Śrīraṅgam; Nāyaki's traditionally languid, unhurried character is structurally suited to the deity's own reclining, restful iconographic pose — rāga selection mirroring not just deity but posture.</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CROSS-CUTTING SYNTHESIS ================= -->
+<section class="synth">
+  <div class="wrap-narrow">
+    <h2 class="sec-title"><span class="skt">सङ्ख्यानविश्लेषणम्</span>What the fifty entries show in aggregate</h2>
+    <p class="sec-intro">Read individually, each entry is a single documented or reasoned data point. Read as a set, three patterns recur often enough to be worth stating as patterns rather than coincidences — with the same caution Module I applied throughout: patterns in compositional choice are not, by themselves, proof of a physiological effect.</p>
+
+    <div class="stat-row">
+      <div class="stat-box"><span class="sn">14 / 50</span><span class="sl">entries use one of only four rāgas (Bhairavi ×3, Kalyāṇi/Pūrvikalyāṇi family ×2, Aṭhāṇā-adjacent ×2, Ārabhi ×2) — a small core of "workhorse" rāgas recurs across otherwise unrelated cycles</span></div>
+      <div class="stat-box"><span class="sn">9 / 9</span><span class="sl">Sūlādi Sapta Tāḷas represented at least once across the Navagraha set alone — the only group in this index that is a complete, self-contained demonstration of the tāḷa system</span></div>
+      <div class="stat-box"><span class="sn">21 / 50</span><span class="sl">entries carry an evidence tier of TRADITIONAL or INFERENCE rather than DOCUMENTED — a reminder that most of this index is careful reasoning from structure, not settled research</span></div>
+    </div>
+
+    <div class="bar-chart">
+      <div class="bar-row"><span class="bar-label">MANAS (mind/rasa)</span><div class="bar-track"><div class="bar-fill" style="width:46%"><span>23 entries</span></div></div></div>
+      <div class="bar-row"><span class="bar-label">VIJÑĀNA (intellect)</span><div class="bar-track"><div class="bar-fill" style="width:24%;background:#B4485A"><span>12 entries</span></div></div></div>
+      <div class="bar-row"><span class="bar-label">PRĀṆA (breath/vital)</span><div class="bar-track"><div class="bar-fill" style="width:16%;background:#C97A2B"><span>8 entries</span></div></div></div>
+      <div class="bar-row"><span class="bar-label">ĀNANDA (bliss/nāda)</span><div class="bar-track"><div class="bar-fill" style="width:12%;background:#123F3D"><span>6 entries</span></div></div></div>
+      <div class="bar-row"><span class="bar-label">ANNA (body/breath-support)</span><div class="bar-track"><div class="bar-fill" style="width:12%;background:#5FA39E"><span>6 entries (some entries carry 2 tags, so totals exceed 50)</span></div></div></div>
+    </div>
+
+    <p>The manas-dominant skew is itself worth noting rather than assuming: it may simply reflect that emotional/devotional address is the easiest layer for a modern reader to identify from a translated text, while prāṇa- and anna-level engagement (breath pacing, gamaka structure) require score analysis or live performance to detect reliably — meaning this index's own tally is likely an undercount of the physical/vital layers relative to the textual/emotional ones, a limitation of the method rather than a finding about Dīkṣitar's actual compositional balance.</p>
+
+    <p>Cross-referencing back to Module I Part VII's EEG evidence: none of the specific rāgas in this fifty-entry index (Saurāṣṭram, Āsāvēri, Aṭhāṇā, Tōḍi, Kalyāṇi, Śaṅkarābharaṇaṁ, Bhairavi, Kāmbhōji, Haṁsadhvani, Amṛtavarṣiṇī, and the rest) has itself been the subject of a published EEG or rāga-chikitsā clinical study — the studies cited in Module I concern Darbārī Kanaḍā, Jogiyā, Chāyānaṭ, Bahār, and Miyā̃ kī Malhār, none of which appear in Dīkṣitar's documented output at all. This is not a small caveat; it is the central honest finding of this second module: the theoretical bridge Module I built between rasa theory, the melakartā system, Dīkṣitar's compositional method, and EEG-measurable effects is structurally sound, but no study has yet walked across that bridge using Dīkṣitar's own music specifically. That remains, in the fullest sense, an open question — and, per the brief this module was built to answer, it is left open rather than closed.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= CLOSING ================= -->
+<footer class="closing">
+  <div class="wrap">
+    <h2>An index, not a verdict</h2>
+    <p>Fifty kṛtis, six documented compositional groups, three evidence tiers, and one recurring finding: Dīkṣitar built an architecture precise enough to analyse this closely — mela numbers, vibhakti cases, tāḷa cycles, rāga-mudra placement, all verifiable — while leaving the emotional and physiological destination of that architecture genuinely open. That openness is not a gap in the scholarship. Structurally, per Module I §6.4, it looks like it was the design intent.</p>
+    <p>Where a specific neurological or psychiatric condition is the reason for reading this index, please treat it as background and context, not guidance, and speak with a qualified clinician about care — the rāga-chikitsā research summarised in Module I is explicit that its own findings are complementary and preliminary.</p>
+    <ul class="bib-mini">
+      <li>Raga/tāḷa/group data cross-checked against: Wikipedia's List of Compositions by Muthuswami Dikshitar and Navagraha Kritis; T.K. Govinda Rao's Compositions of Muddusvami Dikshitar (1997) as reflected in the medieval.org compilation; sreenivasarao's blogs, "Sri Muthuswami Dikshitar and Sri Vidya" series (1–8) and "Kamalamba Navavarana" series, for the vibhakti/avaraṇa mapping; TrikalaArts and Madras Heritage &amp; Carnatic Music ("Pancha Bhuta kritis of Muttuswami Dikshitar") for the Pañcabhūta Liṅga set; the Triveni Journal essay "Musical Compositions of Muthuswami Dikshitar on Planets" for the Sūryamūrtē rasa-split and Bṛhaspatē origin account.</li>
+      <li>Where sources disagreed or a field could not be confirmed (several Navāvaraṇa tāḷas, the Jambūpatē tāḷa variant), the disagreement is stated in the entry rather than resolved by assumption.</li>
+    </ul>
+    <a class="link-back" href="#">&larr; Return to Module I: Rasautpatti, Kāvyotpatti, Nāṭyotpatti</a>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click', function(e){
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
 
 </body>
 </html>
