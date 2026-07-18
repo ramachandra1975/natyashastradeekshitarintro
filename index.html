@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rasautpatti · Kāvyotpatti · Nāṭyotpatti — Genesis, Mechanics, and the Dīkṣitar Synthesis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0F0D0B;
+  --indigo:#182645;
+  --indigo-deep:#0D1830;
+  --madder:#8C2A34;
+  --madder-bright:#B23A44;
+  --turmeric:#C99A2E;
+  --turmeric-soft:#E4C878;
+  --parchment:#EDE4CD;
+  --parchment-dim:#DFD3B4;
+  --ink:#241C14;
+  --ink-soft:#4A3F30;
+  --line:rgba(201,154,46,0.28);
+  --display:'Noto Serif Devanagari', 'Cormorant Garamond', serif;
+  --body:'Spectral', serif;
+  --mono:'IBM Plex Mono', monospace;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--parchment);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:18px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--turmeric-soft);color:var(--void);}
+
+/* ---------- scaffolding ---------- */
+.wrap{max-width:920px;margin:0 auto;padding:0 32px;}
+.wrap-wide{max-width:1100px;margin:0 auto;padding:0 32px;}
+a{color:var(--madder-bright);}
+
+/* ---------- hero ---------- */
+.hero{
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(201,154,46,0.16), transparent 55%),
+    radial-gradient(ellipse at 85% 100%, rgba(140,42,52,0.35), transparent 55%),
+    linear-gradient(180deg, var(--void) 0%, var(--indigo-deep) 55%, var(--indigo) 100%);
+  color:var(--parchment);
+  padding:110px 0 90px;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--turmeric);
+}
+.hero::before{
+  content:"";
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(237,228,205,0.035) 0 1px, transparent 1px 84px);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  font-family:var(--mono);
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-size:12.5px;
+  color:var(--turmeric-soft);
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:28px;
+}
+.hero-eyebrow .rule{height:1px;width:56px;background:var(--turmeric-soft);opacity:.6;}
+.hero h1{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(2.1rem, 5.2vw, 3.55rem);
+  line-height:1.16;
+  margin:0 0 8px;
+  color:#fff;
+}
+.hero .skt{
+  display:block;
+  font-family:var(--display);
+  font-size:0.52em;
+  color:var(--turmeric-soft);
+  font-weight:400;
+  margin-bottom:10px;
+  letter-spacing:.01em;
+}
+.hero-sub{
+  font-size:1.18rem;
+  max-width:640px;
+  color:var(--parchment-dim);
+  font-style:italic;
+  font-weight:300;
+  margin-top:22px;
+  border-left:2px solid var(--madder-bright);
+  padding-left:18px;
+}
+.hero-sutra{
+  margin-top:46px;
+  padding:22px 26px;
+  background:rgba(237,228,205,0.05);
+  border:1px solid var(--line);
+  border-radius:2px;
+  max-width:640px;
+}
+.hero-sutra .sk{
+  font-family:var(--display);
+  font-size:1.25rem;
+  color:var(--turmeric-soft);
+  display:block;
+  margin-bottom:8px;
+}
+.hero-sutra .gloss{font-size:.92rem;color:var(--parchment-dim);font-family:var(--mono);}
+.hero-meta{
+  margin-top:52px;
+  display:flex;gap:36px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:12.5px;color:var(--parchment-dim);
+  letter-spacing:.04em;
+}
+.hero-meta strong{color:var(--turmeric-soft);display:block;font-size:11px;text-transform:uppercase;letter-spacing:.14em;margin-bottom:4px;font-weight:500;}
+
+/* ---------- table of contents ---------- */
+.toc{
+  background:var(--ink);
+  color:var(--parchment-dim);
+  padding:38px 0;
+  border-bottom:1px solid var(--turmeric);
+}
+.toc-inner{display:flex;flex-wrap:wrap;gap:8px 0;font-family:var(--mono);font-size:12.5px;}
+.toc a{
+  color:var(--parchment-dim);
+  text-decoration:none;
+  padding:6px 18px;
+  border-right:1px solid rgba(237,228,205,0.18);
+  white-space:nowrap;
+}
+.toc a:hover{color:var(--turmeric-soft);}
+.toc a:last-child{border-right:none;}
+
+/* ---------- section chrome ---------- */
+.part{
+  padding:96px 0 40px;
+  position:relative;
+}
+.part + .part{border-top:1px solid var(--line);}
+.part-num{
+  font-family:var(--mono);
+  font-size:13px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--madder);
+  margin-bottom:14px;
+  display:flex;align-items:center;gap:12px;
+}
+.part-num::after{content:"";flex:1;height:1px;background:var(--line);}
+h2.part-title{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(1.7rem,3.6vw,2.5rem);
+  margin:0 0 6px;
+  color:var(--ink);
+}
+h2.part-title .skt{
+  display:block;font-size:.5em;color:var(--madder);font-weight:500;margin-bottom:6px;
+}
+.part-intro{
+  font-size:1.08rem;
+  color:var(--ink-soft);
+  max-width:740px;
+  margin:22px 0 44px;
+  font-style:italic;
+}
+h3{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:1.42rem;
+  color:var(--indigo);
+  margin:48px 0 14px;
+  padding-top:2px;
+}
+h3 .num{color:var(--madder);font-family:var(--mono);font-size:.62em;letter-spacing:.08em;margin-right:10px;}
+h4{
+  font-family:var(--body);
+  font-weight:600;
+  font-size:1.08rem;
+  color:var(--ink);
+  margin:30px 0 10px;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  font-size:.92rem;
+  color:var(--madder);
+}
+p{margin:0 0 18px;color:var(--ink);}
+p.lede{font-size:1.12rem;color:var(--ink-soft);}
+.skt-term{font-family:var(--display);font-style:normal;color:var(--indigo);font-weight:600;}
+em.term{font-style:italic;color:var(--madder);font-weight:500;}
+.cite{font-family:var(--mono);font-size:.78em;color:var(--ink-soft);vertical-align:super;}
+
+/* ---------- pull quote / sutra blocks ---------- */
+.sutra-block{
+  margin:30px 0;
+  padding:26px 30px;
+  background:linear-gradient(135deg, rgba(24,38,69,0.04), rgba(140,42,52,0.05));
+  border-left:3px solid var(--madder);
+  border-radius:2px;
+}
+.sutra-block .sk{
+  font-family:var(--display);
+  font-size:1.3rem;
+  color:var(--indigo);
+  display:block;
+  margin-bottom:10px;
+  line-height:1.5;
+}
+.sutra-block .translit{
+  font-family:var(--mono);
+  font-size:.85rem;
+  color:var(--madder);
+  display:block;
+  margin-bottom:12px;
+  letter-spacing:.02em;
+}
+.sutra-block .gloss{font-size:.98rem;color:var(--ink-soft);margin:0;}
+.sutra-block .attr{
+  margin-top:12px;font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);
+  text-transform:uppercase;letter-spacing:.08em;
+}
+
+/* ---------- margin note ---------- */
+.margin-note{
+  float:right;
+  width:230px;
+  margin:6px 0 20px 30px;
+  padding:16px 18px;
+  background:var(--parchment-dim);
+  border:1px solid var(--line);
+  font-family:var(--mono);
+  font-size:12.5px;
+  color:var(--ink-soft);
+  line-height:1.55;
+}
+.margin-note .label{
+  display:block;color:var(--madder);text-transform:uppercase;letter-spacing:.1em;font-size:10.5px;margin-bottom:8px;font-weight:600;
+}
+@media (max-width:760px){.margin-note{float:none;width:auto;margin:20px 0;}}
+
+/* ---------- tables ---------- */
+.table-wrap{overflow-x:auto;margin:26px 0 34px;border:1px solid var(--line);}
+table{border-collapse:collapse;width:100%;font-size:.92rem;background:#fff;}
+table caption{
+  text-align:left;padding:12px 16px;font-family:var(--mono);font-size:11.5px;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--parchment);
+  background:var(--indigo);caption-side:top;
+}
+th{
+  background:var(--ink);color:var(--parchment-dim);
+  font-family:var(--mono);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+  text-align:left;padding:11px 14px;border-bottom:2px solid var(--turmeric);
+}
+td{
+  padding:11px 14px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top;
+}
+tr:nth-child(even) td{background:rgba(201,154,46,0.05);}
+td.skt{font-family:var(--display);color:var(--indigo);font-weight:600;}
+td.num{font-family:var(--mono);color:var(--madder);}
+
+/* ---------- rasa wheel grid cards ---------- */
+.rasa-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));
+  gap:14px;margin:28px 0 36px;
+}
+.rasa-card{
+  border:1px solid var(--line);background:#fff;padding:18px 16px;position:relative;
+  border-top:3px solid var(--card-color, var(--madder));
+}
+.rasa-card .r-skt{font-family:var(--display);font-size:1.25rem;color:var(--ink);font-weight:600;display:block;}
+.rasa-card .r-en{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin:2px 0 10px;display:block;}
+.rasa-card .r-row{font-size:12.5px;color:var(--ink-soft);margin:3px 0;}
+.rasa-card .r-row b{color:var(--ink);font-weight:600;}
+
+/* ---------- swara ladder ---------- */
+.swara-ladder{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0;}
+.swara-chip{
+  font-family:var(--mono);font-size:12.5px;padding:8px 13px;border:1px solid var(--indigo);
+  color:var(--indigo);background:rgba(24,38,69,0.04);border-radius:2px;
+}
+.swara-chip b{color:var(--madder);}
+
+/* ---------- katapayadi worked example ---------- */
+.worked{
+  background:var(--ink);color:var(--parchment);
+  padding:26px 28px;margin:28px 0;font-family:var(--mono);font-size:13.5px;
+  line-height:1.9;border-left:3px solid var(--turmeric);
+}
+.worked .wl{color:var(--turmeric-soft);}
+.worked .step{color:var(--parchment-dim);}
+
+/* ---------- melakarta wheel ---------- */
+.wheel-section{margin:36px 0 44px;}
+.wheel-flex{display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start;}
+.wheel-svg-holder{flex:0 0 auto;background:var(--indigo-deep);border-radius:50%;padding:18px;}
+.wheel-legend{flex:1;min-width:260px;font-size:.95rem;color:var(--ink-soft);}
+.wheel-legend .chakra-name{font-family:var(--mono);font-size:11.5px;color:var(--madder);letter-spacing:.05em;}
+
+/* ---------- dikshitar profile ---------- */
+.profile-band{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;
+  background:var(--line);margin:34px 0;border:1px solid var(--line);
+}
+.profile-cell{background:var(--parchment);padding:20px 22px;}
+.profile-cell .k{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--madder);display:block;margin-bottom:6px;}
+.profile-cell .v{font-size:1rem;color:var(--ink);}
+@media(max-width:700px){.profile-band{grid-template-columns:1fr;}}
+
+/* ---------- navagraha table styling handled by generic table ---------- */
+
+/* ---------- neuro cards ---------- */
+.neuro-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:30px 0;}
+.neuro-card{
+  border:1px solid var(--line);padding:22px 24px;background:#fff;
+  position:relative;
+}
+.neuro-card::before{
+  content:attr(data-tag);
+  position:absolute;top:0;right:0;
+  font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--indigo);color:var(--parchment-dim);padding:4px 10px;
+}
+.neuro-card h4{margin-top:0;}
+.neuro-card .finding{font-size:.95rem;color:var(--ink-soft);margin-bottom:10px;}
+.neuro-card .src{font-family:var(--mono);font-size:11px;color:var(--madder);}
+@media(max-width:700px){.neuro-grid{grid-template-columns:1fr;}}
+
+/* ---------- synthesis diagram (css) ---------- */
+.chain{
+  display:flex;align-items:stretch;gap:0;margin:36px 0;flex-wrap:wrap;
+}
+.chain-node{
+  flex:1;min-width:160px;
+  background:var(--indigo);color:var(--parchment);
+  padding:20px 18px;position:relative;
+}
+.chain-node:nth-child(2){background:var(--madder);}
+.chain-node:nth-child(3){background:var(--turmeric);color:var(--ink);}
+.chain-node:nth-child(4){background:var(--ink);}
+.chain-node .cn-label{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;opacity:.75;display:block;margin-bottom:6px;}
+.chain-node .cn-title{font-family:var(--display);font-weight:600;font-size:1.15rem;}
+.chain-arrow{
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);color:var(--ink-soft);padding:0 6px;font-size:1.2rem;
+}
+
+/* ---------- footnote / bib ---------- */
+.bib{list-style:none;margin:0;padding:0;counter-reset:bib;}
+.bib li{
+  counter-increment:bib;
+  padding:12px 0 12px 40px;position:relative;
+  border-bottom:1px solid var(--line);
+  font-size:.92rem;color:var(--ink-soft);
+}
+.bib li::before{
+  content:"["counter(bib)"]";
+  position:absolute;left:0;top:12px;
+  font-family:var(--mono);color:var(--madder);font-size:.85rem;
+}
+.bib li .t{color:var(--ink);font-weight:600;}
+
+/* ---------- closing ---------- */
+.closing{
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201,154,46,0.12), transparent 60%),
+    linear-gradient(180deg, var(--indigo-deep), var(--void));
+  color:var(--parchment);padding:100px 0 70px;margin-top:20px;
+  border-top:1px solid var(--turmeric);
+}
+.closing h2{font-family:var(--display);font-size:clamp(1.6rem,3.4vw,2.3rem);color:#fff;margin-bottom:20px;}
+.closing p{color:var(--parchment-dim);font-size:1.05rem;}
+.closing .skt-final{font-family:var(--display);font-size:1.7rem;color:var(--turmeric-soft);margin:34px 0 10px;display:block;}
+.footer-line{font-family:var(--mono);font-size:11.5px;color:var(--parchment-dim);opacity:.6;margin-top:50px;letter-spacing:.05em;}
+
+/* ---------- responsive ---------- */
+@media(max-width:640px){
+  body{font-size:16.5px;}
+  .hero{padding:70px 0 60px;}
+  .part{padding:64px 0 30px;}
+}
+
+/* focus visibility */
+a:focus-visible, button:focus-visible{outline:2px solid var(--madder-bright);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ HERO ============================================================ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow"><span class="rule"></span>A working treatise on Sanskrit dramaturgy, Karnāṭaka saṅgīta, and cognitive neuroscience</div>
+    <h1><span class="skt">रसोत्पत्तिः · काव्योत्पत्तिः · नाट्योत्पत्तिः</span>Rasautpatti, Kāvyotpatti, Nāṭyotpatti</h1>
+    <p class="hero-sub">The genesis, mechanics, and lived application of rasa theory — traced from Bharata's aphorism in the Nāṭyaśāstra through the systematic architecture of the sapta svara and the seventy-two melakartā, into the compositional engineering of Muthuswāmi Dīkṣitar, and onward to what contemporary EEG research can and cannot yet confirm about what a rāga does to a brain.</p>
+    <div class="hero-sutra">
+      <span class="sk">विभावानुभावव्यभिचारिसंयोगाद्रसनिष्पत्तिः</span>
+      <span class="gloss">vibhāva-anubhāva-vyabhicāri-saṃyogād rasa-niṣpattiḥ — Nāṭyaśāstra, Adhyāya VI, the rasa-sūtra: rasa is <em>produced</em>, not merely felt, through the deliberate combination of determinants, consequents, and transitory states.</span>
+    </div>
+    <div class="hero-meta">
+      <div><strong>Primary source</strong>Bharata's Nāṭyaśāstra, ch. VI–VII</div>
+      <div><strong>Musicological core</strong>Sapta svara → 22 śruti → 72 melakartā</div>
+      <div><strong>Applied case study</strong>Muthuswāmi Dīkṣitar (1775–1835)</div>
+      <div><strong>Cross-reference</strong>EEG / fractal-dimension studies on rāga listening</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================ TOC ============================================================ -->
+<nav class="toc">
+  <div class="wrap toc-inner">
+    <a href="#part1">I · Rasautpatti</a>
+    <a href="#part2">II · The Three Utpattis</a>
+    <a href="#part3">III · Sapta Svara</a>
+    <a href="#part4">IV · 72 Melakartā</a>
+    <a href="#part5">V · Dīkṣitar's Synthesis</a>
+    <a href="#part6">VI · The Practical Method</a>
+    <a href="#part7">VII · Nāda and the Nervous System</a>
+    <a href="#part8">VIII · Closing Synthesis</a>
+    <a href="#bib">Sources</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============================================================ PART I ============================================================ -->
+<section class="part" id="part1">
+  <div class="wrap">
+    <div class="part-num">Part I · Origination of the Aesthetic Emotion</div>
+    <h2 class="part-title"><span class="skt">रसोत्पत्तिः</span>Rasautpatti — the manufacture of rasa</h2>
+    <p class="part-intro">Rasa is not a mood the spectator happens to catch. Bharata's system treats it as something <em class="term">built</em> — assembled on stage or on the page out of named, classifiable components, the way a rāga is assembled out of named, classifiable svara. Understanding rasa as manufacture, rather than as accident, is the hinge on which everything that follows in this treatise turns.</p>
+
+    <h3><span class="num">1.1</span>The rasa-sūtra and its four moving parts</h3>
+    <p>The foundational statement occurs in the sixth chapter of the <span class="skt-term">Nāṭyaśāstra</span>, attributed to the sage-dramaturge Bharata Muni, conventionally dated between the 2nd century BCE and 2nd century CE, though the text as we have it is almost certainly a redaction of an older performance tradition. The sūtra names four ingredients whose <em class="term">saṃyoga</em> — combination, not mere co-presence — precipitates rasa:</p>
+
+    <div class="sutra-block">
+      <span class="translit">vibhāva · anubhāva · vyabhicāri-bhāva · sthāyi-bhāva</span>
+      <p class="gloss">
+      <b>Vibhāva</b> (the determinant) is the cause within the fiction that gives an emotion its object — a lover, a battlefield, a graveyard. Bharata subdivides this further into <em class="term">ālambana vibhāva</em> (the person or object the emotion is directed at) and <em class="term">uddīpana vibhāva</em> (the circumstances that intensify it — moonlight, a garden, the sound of a vīṇā at dusk).<br><br>
+      <b>Anubhāva</b> (the consequent) is the visible, physical registration of the emotion in the performer's body — a sidelong glance, a trembling hand, tears — the outward evidence that an inward state has occurred.<br><br>
+      <b>Vyabhicāribhāva</b> (the transitory state) is one of thirty-three fleeting, subordinate feelings — despair, envy, intoxication, sleep, recollection — that pass through and color the dominant emotion without displacing it.<br><br>
+      <b>Sthāyibhāva</b> (the dominant, durable emotion) is the substrate that survives all this traffic and is finally, through the combination, raised to the state of rasa — no longer a private feeling belonging to a character, but a tasted, generalized aesthetic condition shared by the audience.
+      </p>
+      <div class="attr">Nāṭyaśāstra VI.31, with Abhinavagupta's Abhinavabhāratī gloss</div>
+    </div>
+
+    <p>The crucial move — and the one most often flattened in popular summary — is that rasa is explicitly <em class="term">not</em> the sthāyibhāva. Bhoja and later Abhinavagupta spend considerable energy on precisely this distinction: the sthāyibhāva is a psychological state that exists in ordinary life (rati, ordinary romantic attachment, is something anyone can feel toward a real person); rasa is what that state becomes only when depersonalized — stripped of the practical, self-interested edges that ordinary emotion carries — and offered for tasting (<em class="term">āsvāda</em>) by a spectator who has no stake in the outcome. Abhinavagupta's term for this depersonalizing operation is <em class="term">sādhāraṇīkaraṇa</em>, generalization: the specific grief of Rāma over Sītā becomes, for the audience, grief-as-such, available to be tasted rather than merely witnessed.</p>
+
+    <div class="margin-note">
+      <span class="label">Why this matters for music</span>
+      This is the exact operation a rāga performs on a svara-phrase. A gamaka-inflected oscillation around Ri in Bhairavi is not "sad" the way a person's private sorrow is sad — it is karuṇa rasa made tastable, generalized, offered. The svara is to the sthāyibhāva what the actor's glance is to the vibhāva.
+    </div>
+
+    <h3><span class="num">1.2</span>The eight (then nine) rasas and their sthāyibhāva</h3>
+    <p>Bharata enumerates eight rasas in the Nāṭyaśāstra; a ninth — <em class="term">śānta</em>, the rasa of tranquility — is a later addition, argued into canonical status principally by Ānandavardhana in the <em class="term">Dhvanyāloka</em> (9th century) and defended systematically by Abhinavagupta, on the grounds that a drama or poem's ultimate aesthetic resting-point is not any of the eight active emotions but the peace that remains once desire itself is generalized and tasted. Each rasa is anchored to one, and only one, sthāyibhāva; the table below is the closest thing Sanskrit poetics has to a periodic table.</p>
+
+    <div class="rasa-grid">
+      <div class="rasa-card" style="--card-color:#B23A44"><span class="r-skt">शृङ्गार Śṛṅgāra</span><span class="r-en">the erotic / romantic</span><div class="r-row"><b>Sthāyibhāva:</b> rati (love)</div><div class="r-row"><b>Deity:</b> Viṣṇu</div><div class="r-row"><b>Colour:</b> śyāma / dark blue-green</div></div>
+      <div class="rasa-card" style="--card-color:#C99A2E"><span class="r-skt">हास्य Hāsya</span><span class="r-en">the comic</span><div class="r-row"><b>Sthāyibhāva:</b> hāsa (mirth)</div><div class="r-row"><b>Deity:</b> Pramatha</div><div class="r-row"><b>Colour:</b> white</div></div>
+      <div class="rasa-card" style="--card-color:#4A6178"><span class="r-skt">करुण Karuṇa</span><span class="r-en">the pathetic / compassionate</span><div class="r-row"><b>Sthāyibhāva:</b> śoka (grief)</div><div class="r-row"><b>Deity:</b> Yama</div><div class="r-row"><b>Colour:</b> grey / dove</div></div>
+      <div class="rasa-card" style="--card-color:#8C2A34"><span class="r-skt">रौद्र Raudra</span><span class="r-en">the furious</span><div class="r-row"><b>Sthāyibhāva:</b> krodha (anger)</div><div class="r-row"><b>Deity:</b> Rudra</div><div class="r-row"><b>Colour:</b> red</div></div>
+      <div class="rasa-card" style="--card-color:#3C6B3C"><span class="r-skt">वीर Vīra</span><span class="r-en">the heroic</span><div class="r-row"><b>Sthāyibhāva:</b> utsāha (energy/resolve)</div><div class="r-row"><b>Deity:</b> Indra</div><div class="r-row"><b>Colour:</b> golden / fair</div></div>
+      <div class="rasa-card" style="--card-color:#1B2A4A"><span class="r-skt">भयानक Bhayānaka</span><span class="r-en">the fearful</span><div class="r-row"><b>Sthāyibhāva:</b> bhaya (fear)</div><div class="r-row"><b>Deity:</b> Kāla</div><div class="r-row"><b>Colour:</b> black</div></div>
+      <div class="rasa-card" style="--card-color:#5C3A1E"><span class="r-skt">बीभत्स Bībhatsa</span><span class="r-en">the disgusting / repugnant</span><div class="r-row"><b>Sthāyibhāva:</b> jugupsā (disgust)</div><div class="r-row"><b>Deity:</b> Śiva / Mahākāla</div><div class="r-row"><b>Colour:</b> blue</div></div>
+      <div class="rasa-card" style="--card-color:#7A5E2E"><span class="r-skt">अद्भुत Adbhuta</span><span class="r-en">the wondrous</span><div class="r-row"><b>Sthāyibhāva:</b> vismaya (astonishment)</div><div class="r-row"><b>Deity:</b> Brahmā</div><div class="r-row"><b>Colour:</b> yellow</div></div>
+      <div class="rasa-card" style="--card-color:#D9CBAE"><span class="r-skt">शान्त Śānta</span><span class="r-en">the tranquil (Ānandavardhana's ninth)</span><div class="r-row"><b>Sthāyibhāva:</b> śama (peace)</div><div class="r-row"><b>Deity:</b> Viṣṇu / Śiva</div><div class="r-row"><b>Colour:</b> jasmine white</div></div>
+    </div>
+
+    <h3><span class="num">1.3</span>Two live disputes worth knowing</h3>
+    <p>Rasa theory is not a museum piece; it was argued over for a millennium and the arguments are still instructive for anyone trying to reverse-engineer how a kṛti produces its effect. Three positions dominate:</p>
+    <p><b>Bhaṭṭa Lollaṭa</b> held that rasa is literally produced (<em class="term">utpatti-vāda</em>) in the character being portrayed, and the spectator merely infers it by association with the actor — a fairly literal reading of "rasa-niṣpatti."<br>
+    <b>Śrī Śaṅkuka</b> proposed an inference theory (<em class="term">anumiti-vāda</em>): the spectator infers the emotion the way one infers fire from smoke, treating the actor's anubhāva as evidence.<br>
+    <b>Bhaṭṭa Nāyaka</b> broke from both with a theory of <em class="term">bhāvakatva</em> and <em class="term">bhogīkaraṇa</em> — the poem's language has a power, distinct from ordinary denotation, to "generalize" and then let the spectator "enjoy" the emotion as pure aesthetic relish, prefiguring Abhinavagupta's final synthesis.<br>
+    <b>Abhinavagupta</b>, writing the definitive gloss in the <em class="term">Abhinavabhāratī</em> and the <em class="term">Locana</em>, resolved the dispute with <em class="term">rasāsvāda</em> — rasa as a form of tasting akin to, but higher than, the delight of Brahman-realization (<em class="term">brahmāsvāda-sahodara</em>), available only because sādhāraṇīkaraṇa has already stripped the emotion of its practical particulars.</p>
+  </div>
+</section>
+
+<!-- ============================================================ PART II ============================================================ -->
+<section class="part" id="part2">
+  <div class="wrap">
+    <div class="part-num">Part II · Three Origins, Not One</div>
+    <h2 class="part-title"><span class="skt">नाट्योत्पत्तिः · काव्योत्पत्तिः · रसोत्पत्तिः</span>Nāṭyotpatti, Kāvyotpatti, Rasautpatti Distinguished</h2>
+    <p class="part-intro">The three terms in the title of this treatise are frequently collapsed into one another in popular writing. They are not synonyms. Each names the genesis of a <em>different</em> thing — a performance medium, a verbal artifact, and an aesthetic emotion — and keeping them apart is what allows Dīkṣitar's practice, further on, to be read correctly as operating on all three levels simultaneously.</p>
+
+    <h3><span class="num">2.1</span>Nāṭyotpatti — the mythic origin of the dramatic medium</h3>
+    <p>The Nāṭyaśāstra opens with its own creation myth. Approached by the gods and sages for a form of entertainment accessible to all four varṇas — a "fifth Veda" that even śūdras, excluded from hearing the other four, could receive — Brahmā extracts <em class="term">pāṭhya</em> (recitation) from the Ṛgveda, <em class="term">gīta</em> (song) from the Sāmaveda, <em class="term">abhinaya</em> (gesture/enactment) from the Yajurveda, and <em class="term">rasa</em> itself from the Atharvaveda, fusing them into <em class="term">nāṭyaveda</em>. The first performance — staged by Bharata and his hundred sons before an audience of gods — is disrupted by hostile Asuras and Vighnas until Indra's banner (<em class="term">jarjara</em>) is consecrated as a stage-weapon and the playhouse itself is ritually fortified. Nāṭyotpatti, in other words, is the origin story of an <em>institution</em>: the theatre, its ritual apparatus (pūrvaraṅga), its performers, and its social license to exist. It answers the question "why is there such a thing as staged drama at all."</p>
+
+    <h3><span class="num">2.2</span>Kāvyotpatti — the origin of poetic language</h3>
+    <p>Kāvyotpatti belongs to a different discourse entirely — <em class="term">alaṅkāraśāstra</em>, the science of poetic ornament, developed by Bhāmaha, Daṇḍin, Vāmana, Ānandavardhana, and Kuntaka rather than by Bharata's dramaturgical lineage. Its most famous origin narrative is not cosmogonic but biographical: Vālmīki, watching a hunter kill one of a pair of mating krauñca birds, is seized by <em class="term">śoka</em> (grief) which spontaneously crystallizes into <em class="term">śloka</em> (verse) — grief becoming metre in the same breath. Later theorists read this episode as kāvya's own primal scene: poetry is born when an ordinary emotional shock is instantaneously transmuted into patterned, memorable language. Where nāṭyotpatti explains the birth of an institution, kāvyotpatti explains the birth of an <em>utterance-form</em> — the mechanism by which raw feeling becomes <em class="term">dhvani</em> (suggested meaning) rather than plain statement, the theory Ānandavardhana systematizes as the highest form of poetic communication, superior to figuration (<em class="term">alaṅkāra</em>) and even to the plain sense of words (<em class="term">abhidhā</em>).</p>
+
+    <h3><span class="num">2.3</span>Rasautpatti — the origin of the tasted emotion itself</h3>
+    <p>Rasautpatti, treated at length in Part I, is neither of the above — it is not about why theatre exists as an institution, nor about how grief becomes metre, but about the technical mechanics by which <em>any</em> vibhāva-anubhāva-vyabhicāribhāva combination, in <em>either</em> medium (staged nāṭya or written kāvya), successfully converts a sthāyibhāva into rasa for a receiving audience. It is the shared substrate underneath both other origin-stories: nāṭya supplies one delivery mechanism for rasa (embodied, visual, temporal), kāvya supplies another (linguistic, suggestive, re-readable), and music — as this treatise will argue — supplies a third, operating almost entirely through the vibhāva-uddīpana channel (mood-intensifying circumstance) rather than through explicit anubhāva, because a rāga has no face to register anubhāva with. It must build the entire tasting experience out of pitch, gamaka, and time alone.</p>
+
+    <div class="sutra-block">
+      <span class="sk">काव्येष्वेव अनुसंहितः रसः, नाट्ये तु प्रत्यक्षतया प्रतीयते</span>
+      <span class="translit">kāvyeṣv eva anusaṃhitaḥ rasaḥ, nāṭye tu pratyakṣatayā pratīyate</span>
+      <p class="gloss">Working paraphrase of the standard alaṅkārika position: in kāvya, rasa is woven in and must be inferred through language; in nāṭya, it is presented directly to perception through embodiment. Saṅgīta (music), the tradition's own later theorists argue — most explicitly Śārṅgadeva in the <em>Saṅgīta-Ratnākara</em> (13th c.) — sits structurally closer to nāṭya than to kāvya: it too is <em class="term">pratyakṣa</em>, immediately perceptible, but it achieves this without either language's semantic precision or drama's visible body.</p>
+    </div>
+
+    <h4>A working distinction</h4>
+    <div class="table-wrap">
+      <table>
+        <caption>The three utpattis compared</caption>
+        <thead><tr><th>Term</th><th>What is born</th><th>Governing text / school</th><th>Primary channel</th></tr></thead>
+        <tbody>
+          <tr><td class="skt">Nāṭyotpatti</td><td>The institution of theatre</td><td>Nāṭyaśāstra I (Brahmā's fifth Veda)</td><td>Body, ritual, stage</td></tr>
+          <tr><td class="skt">Kāvyotpatti</td><td>Poetic/suggestive language</td><td>Alaṅkāraśāstra; Vālmīki-episode; Dhvanyāloka</td><td>Word, metre, dhvani</td></tr>
+          <tr><td class="skt">Rasautpatti</td><td>The tasted aesthetic emotion</td><td>Nāṭyaśāstra VI–VII; Abhinavabhāratī</td><td>Vibhāva–anubhāva–vyabhicāribhāva saṃyoga</td></tr>
+          <tr><td class="skt">(Extension) Saṅgītotpatti</td><td>Rasa via pure tone, no word/body required</td><td>Saṅgīta-Ratnākara; later Kṛti tradition</td><td>Svara, gamaka, tāla, laya</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>This fourth row is not classical terminology — no Sanskrit treatise coins "saṅgītotpatti" as a formal category — but it is the necessary extrapolation this treatise needs, because it is exactly the register in which a composer like Dīkṣitar works: producing rasa through svara and tāla alone, with Sanskrit sāhitya (lyrics) functioning as a *secondary*, semantically reinforcing channel rather than the primary delivery mechanism.</p>
+  </div>
+</section>
+
+<!-- ============================================================ PART III ============================================================ -->
+<section class="part" id="part3">
+  <div class="wrap">
+    <div class="part-num">Part III · The Systematic Substrate</div>
+    <h2 class="part-title"><span class="skt">सप्तस्वरशास्त्रम्</span>Sapta Svara — building the instrument rasa travels through</h2>
+    <p class="part-intro">Before any rāga can carry rasa, the tradition first had to build a combinatorial system precise enough to generate and name every possible melodic scale. That system begins with śruti, resolves into svara, and terminates — by the time of Veṅkaṭamakhin in the 17th century — in the closed, exhaustive set of seventy-two melakartā rāgas that Dīkṣitar inherited and built his entire compositional grammar upon.</p>
+
+    <h3><span class="num">3.1</span>Śruti: the 22 microtonal intervals</h3>
+    <p>The octave (<em class="term">saptaka</em>) is first divided, per Bharata and later Śārṅgadeva, into twenty-two audible microtonal intervals called <em class="term">śruti</em> — literally "that which is heard," the smallest pitch-difference a trained ear reliably distinguishes. The seven svara are not evenly spaced across these 22 śruti; each svara occupies a cluster of either 2, 3, or 4 śruti, which is precisely what gives Indian art music its famous capacity for microtonal inflection (<em class="term">gamaka</em>) — a note is never a fixed point but a small territory that can be approached, oscillated within, and departed from expressively.</p>
+
+    <div class="swara-ladder">
+      <div class="swara-chip"><b>Ṣaḍja (Sa)</b> — 4 śruti — invariant, the drone-tonic</div>
+      <div class="swara-chip"><b>Ṛṣabha (Ri)</b> — variable, 2–4 śruti span depending on variety</div>
+      <div class="swara-chip"><b>Gāndhāra (Ga)</b> — variable</div>
+      <div class="swara-chip"><b>Madhyama (Ma)</b> — 4 śruti — the tritone pivot</div>
+      <div class="swara-chip"><b>Pañcama (Pa)</b> — 4 śruti — invariant, the second fixed pillar</div>
+      <div class="swara-chip"><b>Dhaivata (Dha)</b> — variable</div>
+      <div class="swara-chip"><b>Niṣāda (Ni)</b> — variable</div>
+    </div>
+    <p>Sa and Pa are <em class="term">prakṛti svara</em> — fixed, invariant, the two pillars around which everything else moves, standing at a perfect fourth/fifth relationship that is acoustically privileged in essentially every tuning tradition on earth. Ri, Ga, Dha, and Ni are <em class="term">vikṛti svara</em> — each capable of occupying two or three distinct śruti-positions, which is the raw material out of which twelve chromatic svarasthāna, and eventually seventy-two melakartā, are generated.</p>
+
+    <h3><span class="num">3.2</span>From 22 śruti to 12 svarasthāna</h3>
+    <p>The modern Karnāṭaka system compresses the 22-śruti continuum into <em class="term">16 named svara varieties</em> mapped onto <em class="term">12 svarasthāna</em> (pitch-positions within the octave — functionally, though not conceptually, equivalent to the 12 semitones of a chromatic scale). Ri, Ga, Dha, and Ni each have three possible varieties (numbered 1, 2, 3 — e.g. Ri1/Śuddha Ri, Ri2/Catuśruti Ri, Ri3/Ṣaṭśruti Ri), while Ma has two (Śuddha and Prati), and Sa/Pa have exactly one each. Because certain varieties of adjacent svara coincide on the same svarasthāna (Ri3 and Ga1 share a position, for example, as do Ga3 and Ma2 in the Prati-madhyama series, and Dha3/Ni1), the theoretical 16 names collapse onto 12 physical slots — the same economy of overlapping names for a single pitch-position that a Western theorist would recognize as enharmonic equivalence, arrived at independently and for different structural reasons.</p>
+
+    <h3><span class="num">3.3</span>Grāma, mūrcchanā, and the historical scaffolding</h3>
+    <p>Before the melakartā system existed, the older <em class="term">grāma-mūrcchanā</em> framework of Bharata and Mataṅga organized melody around two fundamental parent-scales (<em class="term">ṣaḍja-grāma</em> and <em class="term">madhyama-grāma</em>), each capable of generating seven rotations (<em class="term">mūrcchanā</em>) by taking each successive svara as the new tonic — the same generative logic later Western modal theory would apply to the diatonic scale, and the direct conceptual ancestor of the janya-rāga (derived rāga) system still in use. This older apparatus is what the mathematics of the melakartā system was ultimately built to formalize, exhaustively and combinatorially, rather than replace.</p>
+  </div>
+</section>
+
+<!-- ============================================================ PART IV ============================================================ -->
+<section class="part" id="part4">
+  <div class="wrap">
+    <div class="part-num">Part IV · The Closed Combinatorial System</div>
+    <h2 class="part-title"><span class="skt">द्वासप्ततिमेलकर्तारागाः</span>The 72 Melakartā — exhaustive derivation</h2>
+    <p class="part-intro">Veṅkaṭamakhin's <em class="term">Caturdaṇḍī-Prakāśikā</em> (c. 1635) is the text that turns the sapta svara apparatus into a genuinely closed combinatorial system: every theoretically possible seven-note, ascending-and-descending-symmetric (<em class="term">sampūrṇa-sampūrṇa</em>), one-variety-per-svara scale is enumerated, numbered, and named — no more, no fewer than seventy-two are mathematically possible under the system's own constraints, and Govindācārya's later 19th-century <em class="term">katapayādi-saṅkhyā</em> naming convention makes every rāga's number recoverable directly from the first two syllables of its name.</p>
+
+    <h3><span class="num">4.1</span>The combinatorics</h3>
+    <p>Hold Sa and Pa fixed (as they must be — the invariant pillars). The <em class="term">pūrvāṅga</em> (lower tetrachord, governing Ri and Ga) admits exactly 6 valid combinations once Ma is fixed as śuddha; the <em class="term">uttarāṅga</em> (upper tetrachord, governing Dha and Ni) likewise admits exactly 6 valid combinations. Six pūrvāṅga possibilities × six uttarāṅga possibilities = 36 melas with śuddha madhyama. The entire 36-mela set is then duplicated with <em class="term">prati madhyama</em> substituted for śuddha madhyama, doubling the total to 36 × 2 = <b>72</b>. This is why the 72 melakartā divide cleanly into two symmetrical halves of 36: melas 1–36 carry śuddha Ma, melas 37–72 carry prati Ma, and — strikingly — mela <i>n</i> and mela <i>n+36</i> always share identical Ri-Ga-Dha-Ni content, differing only in the single Ma variety. This structural symmetry is not decorative; it is exactly the kind of engineered regularity Dīkṣitar exploits, as Part V will show, when he deliberately reaches for a prati-madhyama rāga to mark a Chāyā-graha (a "shadow" planet, Rāhu or Ketu, without physical form) against the śuddha-madhyama norm used for the seven physically visible grahas.</p>
+
+    <div class="worked">
+<span class="wl">// Katapayādi-saṅkhyā — recovering a melakartā's serial number from its name</span>
+
+<span class="step">Rule (Kaṭapayādi consonant-to-digit cipher):</span>
+  ka-varga (k,kh,g,gh,ṅ)   → 1,2,3,4,5
+  ca-varga (c,ch,j,jh,ñ)   → 1,2,3,4,5     (ka & ca rows repeat 1–5)
+  ṭa-varga (ṭ,ṭh,ḍ,ḍh,ṇ)   → 6,7,8,9,0
+  ta-varga (t,th,d,dh,n)   → 6,7,8,9,0     (ṭa & ta rows repeat 6–0)
+  pa-varga (p,ph,b,bh,m)   → 1,2,3,4,5
+
+<span class="step">Take the FIRST TWO CONSONANTS of the rāga name, convert, REVERSE the digit order.</span>
+
+<span class="wl">Example — Mēcakalyāṇi (mela 65):</span>
+  1st consonant: 'm'  (pa-varga, 5th letter) → 5
+  2nd consonant: 'c'  (ca-varga, 1st letter) → 1
+  digits in order read: 5, 1  →  reverse  →  1, 5  →  65
+
+<span class="wl">Example — Dhīraśaṅkarābharaṇaṁ (mela 29, the "major scale" equivalent):</span>
+  1st consonant: 'dh' (ta-varga, 4th letter) → 9
+  2nd consonant: 'r'  (treated as ya-varga null / carries no digit in strict scheme;
+                        practical convention takes 'ś' the next stop-consonant) → 2
+  digits reversed → 2, 9 → 29
+    </div>
+
+    <h3><span class="num">4.2</span>The twelve cakra</h3>
+    <p>The 72 melas group into twelve <em class="term">cakra</em> (wheels) of six rāgas each, the cakra name itself often encoding a mnemonic category (Indu, Netra, Agni, Veda, Bāṇa, Ṛtu, Ṛṣi, Vasu, Brahma, Disi, Rudra, Āditya cakra — numbers drawn from traditional counting-symbols: 1 moon, 2 eyes, 3 fires, 4 vedas, 5 arrows of Kāma, 6 seasons, 7 sages, 8 vasus, and so on, up to 12 Ādityas for the twelfth cakra). Within each cakra, the six rāgas are distinguished purely by their Dha-Ni combination while sharing the same Ri-Ga.</p>
+
+    <div class="wheel-section">
+      <div class="wheel-flex">
+        <div class="wheel-svg-holder" id="wheelHolder"></div>
+        <div class="wheel-legend">
+          <p><span class="chakra-name">Reading the wheel &rarr;</span> Each of the twelve outer spokes is a cakra of six melas. The innermost ring marks śuddha-madhyama melas (1–36); the outer ring marks their prati-madhyama twins (37–72), offset by exactly 36 — visual proof that the system is a doubled structure, not seventy-two independent inventions.</p>
+          <p>The four melas most load-bearing for the Karnāṭaka repertoire, and the four Dīkṣitar leans on hardest across the Navagraha and Navāvaraṇa sets, are highlighted in <b style="color:#C99A2E">turmeric</b>: <b>29 Dhīraśaṅkarābharaṇaṁ</b>, <b>28 Harikāmbhōji</b>, <b>15 Māyāmāḷavagauḷa</b> (the pedagogical "first rāga," parent of Saurāṣṭram used to open the Navagraha set), and <b>65 Mēcakalyāṇi</b>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Selected melakartā load-bearing for this treatise's Dīkṣitar case studies</caption>
+        <thead><tr><th>#</th><th>Melakartā</th><th>Ri · Ga · Ma · Dha · Ni</th><th>Relevance</th></tr></thead>
+        <tbody>
+          <tr><td class="num">15</td><td class="skt">Māyāmāḷavagauḷa</td><td class="num">R1 G3 M1 D1 N3</td><td>The pedagogical root scale; parent of Saurāṣṭram, opening rāga of the Navagraha set (Sūryamūrte)</td></tr>
+          <tr><td class="num">28</td><td class="skt">Harikāmbhōji</td><td class="num">R2 G3 M1 D2 N2</td><td>Parent of numerous janya used across the Kamalāmbā Navāvaraṇa kṛtis</td></tr>
+          <tr><td class="num">29</td><td class="skt">Dhīraśaṅkarābharaṇaṁ</td><td class="num">R2 G3 M1 D2 N3</td><td>Structurally equivalent to the Western major scale; the tonal "home" against which most other melas are heard as departures</td></tr>
+          <tr><td class="num">36</td><td class="skt">Cala-nāṭṭa</td><td class="num">R3 G3 M1 D3 N3</td><td>Terminus of the śuddha-madhyama half of the wheel</td></tr>
+          <tr><td class="num">51</td><td class="skt">Kāmavardhani (Pantuvarāli family, prati Ma)</td><td class="num">R1 G3 M2 D1 N3</td><td>Prati-madhyama analogue of mela 15; associated with weighty, contemplative rasa</td></tr>
+          <tr><td class="num">65</td><td class="skt">Mēcakalyāṇi</td><td class="num">R2 G3 M2 D2 N3</td><td>Prati-madhyama twin of Śaṅkarābharaṇaṁ's near-neighbour; Kalyāṇi-family rāgas carry a majestic, expansive (vīra/adbhuta-leaning) character</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PART V ============================================================ -->
+<section class="part" id="part5">
+  <div class="wrap">
+    <div class="part-num">Part V · The Applied Case Study</div>
+    <h2 class="part-title"><span class="skt">दीक्षितसमन्वयः</span>Dīkṣitar's Synthesis — rasa-engineering through raga architecture</h2>
+    <p class="part-intro">Muthuswāmi Dīkṣitar (1775–1835), one of the "Trinity" of Karnāṭaka music alongside Tyāgarāja and Śyāma Śāstri, is the composer in whom the abstract apparatus of Parts I–IV stops being theory and becomes an explicit, documentable compositional method. His signature move, visible across roughly 450–500 surviving kṛtis, is to treat rāga selection, tāla selection, sāhitya (lyric), and even the internal Pūrvāṅga/Uttarāṅga structure of a single composition as separately tunable parameters, each independently assigned to carry a specific rasa or item of technical/mantric information — an architecture that is much closer to systems-engineering than to spontaneous lyricism.</p>
+
+    <div class="profile-band">
+      <div class="profile-cell"><span class="k">Lineage</span><span class="v">Trained by his father Rāmasvāmi Dīkṣitar and by the Sufi/Hindustani-trained guru Cidambaranātha Yogī; deeply versed in Śrī Vidyā Tantra</span></div>
+      <div class="profile-cell"><span class="k">Signature / mudra</span><span class="v">"Guruguha" — embedded in nearly every kṛti as a textual signature, referring to Subrahmaṇya and to his own guru-lineage</span></div>
+      <div class="profile-cell"><span class="k">Idiom</span><span class="v">Vīṇā-style (vainika) composition emphasizing sustained gamaka and a slow tempo (cauka kāla), Sanskrit sāhitya, and frequent embedding of the rāga's own name inside the lyric (rāga-mudra)</span></div>
+    </div>
+
+    <h3><span class="num">5.1</span>Case study — the Navagraha Kṛtis as a rasa-mapping table</h3>
+    <p>The origin of the Navagraha ("nine planets") set is itself an anecdote about music treated as applied science rather than ornament: Dīkṣitar's disciple Tambiyappan fell ill, and rather than prescribe the full Vedic-astrological ritual apparatus for planetary appeasement, Dīkṣitar composed <em class="term">Bṛhaspate</em> in rāga Aṭhāṇā and had it sung for the ailment; the disciple recovered, and the episode furnished the impetus to complete kṛtis for all nine grahas<span class="cite">[7]</span>. What follows from this origin story is a set of nine compositions in which rāga, tāḷa, and rasa are each deliberately, non-arbitrarily assigned to a planetary character.</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Navagraha Kṛtis — rāga / tāḷa / rasa-logic (selected)</caption>
+        <thead><tr><th>Graha</th><th>Kṛti opening</th><th>Rāga</th><th>Tāḷa</th><th>Compositional logic</th></tr></thead>
+        <tbody>
+          <tr><td>Sūrya (Sun)</td><td class="skt">Sūryamūrte</td><td>Saurāṣṭram (janya of mela 15)</td><td>Dhruva (Caturaśra)</td><td>Saurāṣṭram is called a <em class="term">sampūrṇa</em> rāga "fit to be sung at all times" in Dīkṣitar's own school; the word "Saurāṣṭrena" is woven directly into the sāhitya as a pun on the rāga's own name — a rāga-mudra. Dīkṣitar deliberately splits the composition's rasa across its two halves: the <em class="term">uttarāṅga</em> (second half) delineates <em class="term">vīra rasa</em>, while the <em class="term">pūrvāṅga</em> (first half) carries <em class="term">bhakti rasa</em><span class="cite">[1]</span> — rasa assigned architecturally, section by section, not left to emerge from the words alone.</td></tr>
+          <tr><td>Candra (Moon)</td><td class="skt">Candraṁ Bhaja Mānasa</td><td>Āsāvēri</td><td>Caturaśra Maṭya</td><td>A cooling, contemplative rāga chosen to mirror the Moon's own mind-soothing character in Vedic cosmology.</td></tr>
+          <tr><td>Bṛhaspati (Jupiter)</td><td class="skt">Bṛhaspate Tārāpate</td><td>Aṭhāṇā</td><td>—</td><td>The origin-composition of the entire set; its curative anecdote is the founding case for treating a specific rāga as having a specific, near-therapeutic effect<span class="cite">[7]</span>.</td></tr>
+          <tr><td>Rāhu (shadow planet)</td><td class="skt">Smarāmyaham</td><td>Rāmamanohari / Rāmapriya (prati-madhyama)</td><td>Rūpaka</td><td>Rāhu and Ketu — the two <em class="term">chāyā-graha</em>, bodiless "shadow" planets in Vedic astronomy — are the only two of the nine set in <em class="term">prati-madhyama</em> rāgas, breaking from the śuddha-madhyama norm used for the seven embodied grahas. Both are also set to the same <em class="term">Rūpaka tāḷa</em>, the <em class="term">vilakṣaṇa</em> (irregular/distinctive) tāḷa in the Sūlādi Sapta Tāḷa series<span class="cite">[1]</span>. Dīkṣitar uses the mela-37-through-72 doubling described in Part IV.1 as a literal signifier of ontological difference — bodiless planets get the "shadow" half of the melakartā wheel.</td></tr>
+          <tr><td>Ketu (shadow planet)</td><td class="skt">Mahāsuraṁ</td><td>Camāram / Ṣaṇmukhapriya (prati-madhyama)</td><td>Rūpaka</td><td>Same logic as Rāhu, above — the second chāyā-graha, completing the deliberate symmetry.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Two structural facts make this table more than a curiosity. First, Dīkṣitar set all nine Navagraha kṛtis across all seven of the Sūlādi Sapta Tāḷa (the seven fundamental tāḷas), so that the set functions as a self-contained pedagogical demonstration of the tāḷa system itself, layered on top of its astrological program<span class="cite">[1]</span>. Second, the Rāhu/Ketu pairing shows that Dīkṣitar treated the <em class="term">theoretical structure of the melakartā wheel</em> — specifically its śuddha/prati-madhyama bifurcation, described purely combinatorially in Part IV — as expressive raw material in its own right, independent of any specific rāga's traditionally assigned rasa. The "shadow" quality of Rāhu and Ketu is encoded not by melody alone but by which <em>half of the mathematical system</em> the rāga is drawn from.</p>
+
+    <h3><span class="num">5.2</span>Case study — the Kamalāmbā Navāvaraṇa Kṛtis and Śrī Cakra correspondence</h3>
+    <p>The eleven Navāvaraṇa kṛtis, dedicated to the goddess Kamalāmbā of Tiruvārūr, are structured around the nine <em class="term">āvaraṇa</em> (enclosures) of the Śrī Cakra in Śrī Vidyā worship, drawing directly on Dīkṣitar's own lifelong immersion in Tantric ritual practice<span class="cite">[6]</span>. Ragas across this set — Khamās and Mōhanam among them — are selected specifically to mirror the goddess's protective and compassionate character, with compositions often closing in <em class="term">madhyama-kāla sāhitya</em> (a faster-texted closing passage) for rhythmic vitality after the slow cauka-kāla opening<span class="cite">[6]</span> — the same pūrvāṅga/uttarāṅga rasa-splitting logic seen in the Sūryamūrte analysis above, now deployed at the level of tempo rather than rāga.</p>
+
+    <h3><span class="num">5.3</span>What the vainika idiom contributes to rasautpatti</h3>
+    <p>Because Dīkṣitar's melodic language is modeled on the vīṇā rather than the voice, his kṛtis foreground sustained, slow-unfolding gamaka — the microtonal oscillation within a svara's śruti-territory described in Part III — far more heavily than the faster, syllable-dense idiom of his contemporary Tyāgarāja. In rasa-theoretic terms, this is a direct exploitation of <em class="term">uddīpana-vibhāva</em>: the gamaka is not decorative, it is the "intensifying circumstance" (moonlight, garden-scent, in Bharata's terrestrial examples) that the tradition requires for a sthāyibhāva to be raised to rasa. A note held and slowly inflected functions, structurally, the way a lingering visual detail functions in a dramatic scene — it gives the listener's attention somewhere to dwell long enough for generalization (sādhāraṇīkaraṇa) to occur.</p>
+  </div>
+</section>
+
+<!-- ============================================================ PART VI ============================================================ -->
+<section class="part" id="part6">
+  <div class="wrap">
+    <div class="part-num">Part VI · The Open Architecture</div>
+    <h2 class="part-title"><span class="skt">शरीरत्रयसाधनम्</span>Dīkṣitar's Practical Method — Body, Mind, and Soul as a Working Instrument</h2>
+    <p class="part-intro">Everything established so far — the rasa-sūtra's mechanics, the 72-mela mathematics, the Navagraha and Navāvaraṇa case studies — describes <em>what</em> Dīkṣitar built. This part asks the more practical question the tradition itself asks: <em>how</em> is a kṛti actually used, by a practicing body and mind, as a working technology? Dīkṣitar's own textual choices show he was operating with an explicit tri-level model of the human instrument, and — crucially for the "open-ended" framing this part takes seriously — he built his compositions to remain usable across that model rather than to resolve into a single closed message.</p>
+
+    <h3><span class="num">6.1</span>The tri-śarīra lens: gross, subtle, causal</h3>
+    <p>Vedāntic and Tantric physiology, the frameworks Dīkṣitar was formally initiated into as a Śrī Vidyā Mahā-ṣoḍaśākṣarī dīkṣita<span class="cite">[25]</span>, describe the human being as three nested bodies — <em class="term">sthūla śarīra</em> (the gross, physical body), <em class="term">sūkṣma śarīra</em> (the subtle body of breath, mind, and perception), and <em class="term">kāraṇa śarīra</em> (the causal body of undifferentiated awareness) — refined further, in the Taittirīya Upaniṣad's older schema, into five <em class="term">kośa</em> (sheaths): <em class="term">annamaya</em> (food/matter), <em class="term">prāṇamaya</em> (breath/vitality), <em class="term">manomaya</em> (mind/emotion), <em class="term">vijñānamaya</em> (discernment/witness-intellect), and <em class="term">ānandamaya</em> (bliss). A kṛti, read against this lens, is not a single-channel artifact; it is layered so that each kośa has something built specifically for it:</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Kṛti components mapped onto the pañca-kośa model</caption>
+        <thead><tr><th>Kośa (sheath)</th><th>Compositional layer engaged</th><th>Concrete device in Dīkṣitar's practice</th></tr></thead>
+        <tbody>
+          <tr><td class="skt">Annamaya (physical)</td><td>Articulation, breath-support, posture</td><td>Cauka kāla (slow tempo) forces long, supported phrases — the body's own breath rhythm is entrained before anything else happens</td></tr>
+          <tr><td class="skt">Prāṇamaya (vital/breath)</td><td>Gamaka, sustained svara, nyāsa (resting points)</td><td>The vīṇā-style oscillation held across a syllable ties melodic motion directly to exhalation length — pacing prāṇa (breath/vital energy) rather than just pitch</td></tr>
+          <tr><td class="skt">Manomaya (mind/emotion)</td><td>Sāhitya meaning, rāga-bhāva, rasa</td><td>The Sanskrit text's plain sense — devotional narrative, iconographic description — engages the mind at the level of ordinary emotion, generalized per Part I into rasa</td></tr>
+          <tr><td class="skt">Vijñānamaya (discernment)</td><td>Rāga-mudra, vāggeyakāra-mudra, technical wordplay</td><td>The listener who recognizes the rāga's own name folded into the lyric, or the "Guruguha" signature, or a chain of lines each opening on the same syllable (the <em class="term">prathamākṣara-prāsa</em> Dīkṣitar uses in his very first kṛti<span class="cite">[28]</span>), is being rewarded at the level of pattern-recognition and intellect, not emotion</td></tr>
+          <tr><td class="skt">Ānandamaya (bliss)</td><td>Nāda itself, prior to word or gamaka</td><td>The tradition's own claim, stated outright in the Nādopāsana lineage — <em class="term">nāda-brahma</em>, sound as the Absolute itself — that the raw tone, beneath all the other layers, is already complete</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="num">6.2</span>The dhyāna kṛti as an induction phase</h3>
+    <p>The clearest evidence that Dīkṣitar was thinking procedurally, not just poetically, is the way he frames his major suites. The eleven-part Kamalāmbā Navāvaraṇa set is not simply nine kṛtis for nine āvaraṇa (enclosures) of the Śrī Cakra — it opens with a dedicated <em class="term">dhyāna kṛti</em>, <em class="skt-term">Kamalāmbike Āśrita Kalpalatike</em> in rāga Tōḍi (Rūpaka tāḷa), and closes with a <em class="term">maṅgala kṛti</em> in rāga Śrī<span class="cite">[24]</span>. Structurally, this is a three-part protocol — induction, intervention, closure — that any contemporary music-therapy or meditation program would recognize immediately: a threshold composition whose job is only to settle attention and establish a receptive state, before the technically and emotionally denser sequence of nine begins, followed by a composition whose job is only to close the session safely. Tellingly, the dhyāna kṛti is the one composition in the set that <em>omits</em> Dīkṣitar's customary rāga-mudra<span class="cite">[24]</span> — the self-referential wordplay that elsewhere rewards the vijñānamaya layer is deliberately withheld at the threshold, where the intent is settling rather than intellectual engagement.</p>
+
+    <h3><span class="num">6.3</span>Bīja-akṣara and mantra-structure inside the sāhitya</h3>
+    <p>Dīkṣitar's Sanskrit lyrics are frequently structured as more than devotional description. Śrī Vidyā Tantra treats vowels as <em class="term">bīja-akṣara</em> — "seed syllables" carrying the generative power (śakti) that an inert consonant needs before it can mean anything at all<span class="cite">[24]</span>; Dīkṣitar's texts, composed by a formally initiated Śrī Vidyā practitioner, embed this consonant-vowel logic directly, so that reciting or singing certain phrases is understood, within the tradition, to be doing mantra-work simultaneously with doing musical and narrative work. The practical implication for this treatise's "open-ended" question is that a listener does not have to consciously track any of this for it to operate — the phonetic structure is doing something at the level of repeated sound-pattern (the prathamākṣara-prāsa device above is the clearest observable instance) independent of whether the listener parses the Sanskrit at all, which is exactly the property a therapeutic or meditative use of the material would need.</p>
+
+    <h3><span class="num">6.4</span>What "leaving it open" means in Dīkṣitar's own formal choices</h3>
+    <p>The user's framing — an "open standing for open-ended questions" — has a direct formal correlate in the repertoire. Performers and musicologists studying Dīkṣitar's oeuvre note that many of his kṛtis dispense with the <em class="term">anupallavi</em> (the second formal section most Karnāṭaka kṛtis include) and are paced slowly, allowing the rāga itself to develop at length rather than driving toward a fixed narrative or rhythmic climax<span class="cite">[29]</span>. A kṛti built this way is not trying to close a question; it is building a space the rāga can continue developing inside of, indefinitely, across repeated listenings or repeated performances — structurally closer to a sustained environment than to a story with an ending. This is precisely the property that would make a composition <em>reusable</em> as a therapeutic or contemplative instrument rather than exhausted on first hearing: an argument, a joke, or a plot resolves and is "used up"; a slow-paced, anupallavi-less rāga exposition, built from long-held gamaka-laden svara, does not resolve in that way and can be returned to.</p>
+
+    <div class="margin-note">
+      <span class="label">Reading this carefully</span>
+      None of section 6.1–6.4 is a claim that Dīkṣitar was practicing neuroscience two centuries early. It is a claim that the tri-śarīra / pañca-kośa framework he explicitly worked within already contains a working theory of layered, repeatable, non-narrative engagement — and that this theory is structurally compatible with, though not identical to, what a modern therapeutic protocol needs. Part VII takes up what can and cannot yet be said about that compatibility empirically.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PART VII (was VI) ============================================================ -->
+<section class="part" id="part7">
+  <div class="wrap">
+    <div class="part-num">Part VII · From Metaphor to Measurement</div>
+    <h2 class="part-title"><span class="skt">नादमस्तिष्कयोः सम्बन्धः</span>Nāda and the Nervous System — what EEG evidence actually shows</h2>
+    <p class="part-intro">The claim that a rāga "produces" an emotional and physiological state is, as Part I established, the tradition's own founding claim — <em class="term">rasa-niṣpatti</em>, manufacture, not accident. Contemporary neuroscience has begun testing a narrower, measurable version of that claim: not whether a rāga is beautiful, but whether listening to one produces detectable, repeatable changes in EEG-recorded brain activity. The literature is young, the sample sizes are small, and the honest picture is considerably more modest than either traditional rhetoric or popular science journalism usually presents it — but several findings are worth taking seriously precisely because they are so consistent across independent groups.</p>
+
+    <div class="neuro-grid">
+      <div class="neuro-card" data-tag="EEG · Alpha band">
+        <h4>Alpha-wave increase with rāga listening</h4>
+        <p class="finding">A 2024 meta-analysis pooling five prospective EEG studies (71 total participants, aged 19–30) found a statistically significant increase in alpha-band activity and attention scores during rāga listening, consistent with the tradition's own claim that specific rāgas can settle the mind into a receptive, meditative state<span class="cite">[9]</span>. The same review notes that a fractal-dimension approach was sensitive enough to detect EEG changes during and after the listening intervention, but that pooling across studies could not establish a reliable relationship between which specific rāga was played and the size of the fractal-dimension shift<span class="cite">[9]</span> — a genuine limitation, not a footnote to be skipped.</p>
+        <p class="src">Kunikullaya et al.; PMC10754644 meta-analysis, 2024</p>
+      </div>
+      <div class="neuro-card" data-tag="EEG · Microstates">
+        <h4>IIT Mandi / IIT Kanpur microstate study</h4>
+        <p class="finding">A 40-participant EEG-microstate study contrasted rāga Darbāri (traditionally a "happy"/grave-yet-grand rāga) against rāga Jogiyā (traditionally sombre). Both rāgas extended the duration and stability of EEG microstates relative to baseline — read by the investigators as calmer, more grounded mental states — while diverging in character: Darbāri was associated with deeper mental clarity, Jogiyā with emotional balance, together yielding a more focused, introspective state<span class="cite">[10]</span>. The consistency of the microstate pattern across participants is the study's strongest claim; the causal interpretation of "clarity" versus "balance" is necessarily more speculative.</p>
+        <p class="src">Behera / Gupta et al., IIT Mandi–IIT Kanpur, 2025</p>
+      </div>
+      <div class="neuro-card" data-tag="Complexity / fractal">
+        <h4>Contrast-emotion rāga pairs and brain-signal complexity</h4>
+        <p class="finding">A neuro-acoustical study contrasting Chāyānaṭ (associated with romance/joy) against Darbārī Kannaḍā (associated with sorrow/pathos), and Bahār against Miyā̃ kī Malhār on a separate day, found substantial complexity changes in EEG rhythms specifically at the moments of emotional transition within a rāga's unfolding, and found that appraisal shifts were more pronounced across flat/sharp note transitions than across "śuddha" (natural) note transitions<span class="cite">[8]</span> — a finding that lines up unusually well with the sapta-svara mechanics of Part III, where vikṛti-svara (the flat/sharp-capable notes) are exactly the ones carrying the melodic information that a fixed svara like Sa or Pa cannot.</p>
+        <p class="src">Neuro-acoustical study, Indian classical music, academia.edu preprint</p>
+      </div>
+      <div class="neuro-card" data-tag="Behavioural / valence">
+        <h4>Ālāp vs. gat: tempo, interval, and emotional valence</h4>
+        <p class="finding">Mathur and colleagues (2015) had listeners rate the emotion evoked by rāga performances in two contrasting sections — the slow, rhythm-free ālāp and the faster, rhythm-bound gat — and found ālāp sections tended to elicit calmness or sadness while gat sections elicited happiness, excitement, or tension; tempo and rhythm drove arousal, while the specific melodic intervals used drove emotional valence, with intervals functioning analogously to "major" (positive-leaning) and "minor" (negative-leaning) in other tonal traditions<span class="cite">[16]</span>.</p>
+        <p class="src">Mathur et al., 2015, cited in PsychUniverse review</p>
+      </div>
+    </div>
+
+    <h3><span class="num">7.1</span>Rāga chikitsā and named neurological/neurocognitive conditions</h3>
+    <p>Beyond general EEG correlates, a distinct and more clinically-oriented literature has grown around <em class="term">rāga chikitsā</em> ("rāga therapy"), which explicitly targets named conditions rather than general mood. Three strands are relevant to the "ailments at a neurological level" framing directly:</p>
+
+    <div class="neuro-grid">
+      <div class="neuro-card" data-tag="Neurocognitive · dementia">
+        <h4>Alzheimer's disease and related dementias</h4>
+        <p class="finding">A 2024 review argues that Indian Classical Music, delivered with attention to a rāga's traditional circadian placement, can be layered onto the general evidence base for music-based interventions in AD/ADRD — which across multiple systematic reviews and meta-analyses has shown improvement in mood, verbal fluency, gait, and autobiographical/episodic memory<span class="cite">[14]</span>. The review's own framing is that rāga-specific effects (as opposed to music-in-general effects) are "worth deciphering" — i.e. still an open research question, not yet a settled clinical finding<span class="cite">[14]</span>.</p>
+        <p class="src">Medical Research Archives review, 2024</p>
+      </div>
+      <div class="neuro-card" data-tag="Clinical pilot · mood/sleep">
+        <h4>Darbārī Kanaḍā and elderly depression, anxiety, sleep</h4>
+        <p class="finding">A pre/post pilot (no control group) gave elderly participants two months of rāga Darbārī Kanaḍā listening and found statistically significant (p&lt;0.001) reductions in depression, anxiety, stress, and sleep difficulty at the four- and eight-week marks<span class="cite">[19]</span>. This is a genuine, dosha-informed clinical signal worth taking seriously — and it is also, by the authors' own design, a single-arm study with no control condition, which means placebo, regression-to-mean, and simple rest effects cannot be ruled out<span class="cite">[19]</span>.</p>
+        <p class="src">Goyal et al., Acta Neurophysiologica, 2024</p>
+      </div>
+      <div class="neuro-card" data-tag="Movement disorder">
+        <h4>Rhythmic auditory cueing in Parkinson's disease</h4>
+        <p class="finding">Outside the rāga literature specifically, rhythmic auditory cueing is a well-established adjunct in Parkinson's rehabilitation, since a steady external beat can partially substitute for the automaticity of gait and movement timing that the disease progressively erodes<span class="cite">[23]</span>. A Romanian pilot combining physical therapy with music listening found improved self-reported quality of life versus physical therapy alone<span class="cite">[23]</span>. No published study has yet tested whether the specific tāḷa-structures of Dīkṣitar's kṛtis — set, as Part V showed, across all seven Sūlādi Sapta Tāḷa — offer any advantage over a simple metronomic beat for this purpose; the tāḷa cycle is structurally exactly the kind of steady, cyclical time-marker this literature says is useful, but that is an inference from structure, not a tested result.</p>
+        <p class="src">PMC8145473, Romanian PD rehabilitation pilot, 2021</p>
+      </div>
+      <div class="neuro-card" data-tag="Mechanism review">
+        <h4>Proposed mechanism: predictive coding and affective processing</h4>
+        <p class="finding">A 2025 complementary-medicine review proposes that rāga therapy works by engaging predictive-coding and affective-processing brain mechanisms — the way a rāga sets up and then confirms or subverts a listener's expectation of the next svara — and explicitly frames itself as a <em>complementary</em>, not a replacement, approach to disease management<span class="cite">[21]</span>. That framing — complementary, mechanism-hypothesized rather than mechanism-proven — is the correct one for everything in this section.</p>
+        <p class="src">Munshi et al., 2025</p>
+      </div>
+    </div>
+
+    <p>Read together, these four sources support a specific, bounded claim: there is active, serious clinical-research interest in using rāga — including rāgas structurally identical in kind to the ones Dīkṣitar composed in — as a complementary tool for depression, anxiety, sleep disturbance, and cognitive symptoms in neurocognitive disorders, with early pilot data that is encouraging but methodologically preliminary (small samples, few controlled trials, no study isolating a Dīkṣitar composition specifically). It does not support treating any kṛti as a validated treatment for a diagnosed neurological condition. Anyone dealing with a real neurological or psychiatric condition should treat this repertoire as what the field itself calls it — complementary — alongside, not instead of, professional medical care.</p>
+
+    <h3><span class="num">7.2</span>Reading Dīkṣitar's method against this evidence, carefully</h3>
+    <p>It is tempting — and this treatise resists the temptation — to claim that Mathur et al.'s ālāp/gat tempo-arousal finding "proves" why Dīkṣitar's cauka-kāla (slow tempo) idiom produces a calmer, more contemplative rasa than Tyāgarāja's faster-paced compositions, or that the alpha-band findings "confirm" the śānta rasa Ānandavardhana argued for. What the evidence actually licenses is narrower and, properly stated, still striking: the two independent traditions — a 2nd-century Sanskrit dramaturgical vocabulary built entirely from first-person aesthetic report, and a 21st-century EEG laboratory measuring electrical activity with no access to first-person report at all — have converged on structurally similar claims about <em>which musical parameters carry emotional information</em> (tempo/rhythm for arousal, melodic interval and gamaka-bearing svara for valence/quality). That convergence is evidence the tradition's categories were tracking something real; it is not yet evidence that any single kṛti reliably produces any single rasa in any given listener's EEG trace, and no published study to date has tested a Dīkṣitar composition specifically. The honest state of the field is: directionally consistent, mechanistically plausible, not yet composer-specific, and built on small samples that any one of these studies' own authors would be the first to flag as preliminary.</p>
+
+    <div class="margin-note">
+      <span class="label">A note on caution</span>
+      Music-evoked emotion is known from the broader neuroscience literature to engage limbic and paralimbic structures involved in the initiation, regulation, and termination of emotional states more generally<span class="cite">[13]</span> — this is well-established for music in general, not specific to rāga, and should not be overstated as rāga-specific neurology when it is really a statement about music cognition broadly, with rāga as one well-studied instance of it.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PART VII / SYNTHESIS ============================================================ -->
+<section class="part" id="part8">
+  <div class="wrap">
+    <div class="part-num">Part VIII · Closing Synthesis</div>
+    <h2 class="part-title"><span class="skt">समन्वयः</span>The Four-Tier Translation</h2>
+    <p class="part-intro">What this treatise has traced, across eight parts, is a single chain of translation — the same underlying claim about how emotion is manufactured, re-expressed at five successively more technical levels of description.</p>
+
+    <div class="chain">
+      <div class="chain-node"><span class="cn-label">Tier 1 · Metaphysics</span><span class="cn-title">Rasa-sūtra</span>Vibhāva + anubhāva + vyabhicāribhāva → sthāyibhāva raised to rasa</div>
+      <div class="chain-arrow">&rarr;</div>
+      <div class="chain-node"><span class="cn-label">Tier 2 · Musicology</span><span class="cn-title">Sapta svara / 72 melakartā</span>Śruti → svarasthāna → the closed combinatorial rāga-system that supplies uddīpana-vibhāva in tone alone</div>
+      <div class="chain-arrow">&rarr;</div>
+      <div class="chain-node"><span class="cn-label">Tier 3 · Composition</span><span class="cn-title">Dīkṣitar's kṛti architecture</span>Rāga, tāḷa, tempo, and pūrvāṅga/uttarāṅga structure independently assigned to carry specific rasa</div>
+      <div class="chain-arrow">&rarr;</div>
+      <div class="chain-node"><span class="cn-label">Tier 4 · Practice</span><span class="cn-title">Pañca-kośa application</span>Dhyāna kṛti as induction, bīja-akṣara embedding, anupallavi-less open form built for repeated, non-narrative use</div>
+      <div class="chain-arrow">&rarr;</div>
+      <div class="chain-node"><span class="cn-title" style="font-size:1rem"><span class="cn-label">Tier 5 · Physiology</span>Measurable correlate</span>EEG alpha-band, microstate stability, fractal-complexity shifts; early rāga-chikitsā clinical pilots</div>
+    </div>
+
+    <p>Each tier is a legitimate, internally rigorous system in its own right, built centuries apart, by people with no access to the vocabulary of the tiers on either side of them. Bharata never measured an alpha wave. The IIT Mandi EEG lab does not cite Abhinavagupta. Dīkṣitar, writing in the early 19th century, sits at the two middle tiers that explicitly bridge the rest: he inherited the closed mathematics of Tier 2 as a finished system from Veṅkaṭamakhin and used it as raw material for an aesthetic program recognizably continuous with Tier 1's rasa-sūtra (the pūrvāṅga/uttarāṅga rasa-splitting in Sūryamūrte is not different in kind from Bharata's vibhāva/anubhāva combinatorics — it is the same generalizing operation in a different medium); and, at Tier 4, he built the dhyāna-kṛti/anupallavi-less/bīja-akṣara apparatus of Part VI specifically so that his compositions could be *used*, repeatedly and across the pañca-kośa, rather than merely heard once — an apparatus whose formal parameters (tempo, interval structure, sustained gamaka, cyclical tāḷa) are exactly the parameters Tier 5's EEG and rāga-chikitsā literature is independently finding to be where measurable effects on the nervous system live.</p>
+    <p>The synthesis this treatise argues for is not that the five tiers <em>prove</em> each other — a category error the closing paragraph of Part VII already declined to make — but that they are five independently-arrived-at descriptions of the same underlying phenomenon: a sound, deliberately structured, reliably moving a body and a mind from one state to another. Rasautpatti described this from the inside, as an event of tasting. Sapta-svara and melakartā theory described it from the workbench, as an event of construction. Dīkṣitar's kṛtis are the constructed object itself. The pañca-kośa framework of Part VI is the constructed object's own user manual — Dīkṣitar's account of how it is meant to be practiced, layer by layer, body to mind to soul. And the EEG trace, or the pre/post depression-and-sleep score, is the same event described from outside a skull, in the only vocabulary a physiology laboratory or a clinical pilot has. Whether that vocabulary will ever fully close the gap to Dīkṣitar's own five hundred kṛtis, taken one at a time, remains — as it should — an open question, not a settled one.</p>
+  </div>
+</section>
+
+<!-- ============================================================ CLOSING / BIB ============================================================ -->
+<footer class="closing" id="bib">
+  <div class="wrap">
+    <h2>Sources consulted</h2>
+    <p>Primary Sanskrit sources (Nāṭyaśāstra, Dhvanyāloka, Abhinavabhāratī, Caturdaṇḍī-Prakāśikā, Saṅgīta-Ratnākara) are public-domain classical texts and are referenced here by chapter/verse rather than quoted at length. Contemporary sources consulted for the Dīkṣitar case studies and the neuroscience section are listed below.</p>
+    <ol class="bib">
+      <li><span class="t">Musical Compositions of Muthuswami Dikshitar on Planets.</span> Triveni Journal (wisdomlib.org compilation) — source for the Sūryamūrte pūrvāṅga/uttarāṅga rasa-split and the Rāhu/Ketu prati-madhyama pairing.</li>
+      <li><span class="t">Navagraha Kritis.</span> Wikipedia — rāga/tāḷa listing for the nine kṛtis.</li>
+      <li><span class="t">Dikshitar's Navagraha Kṛtis.</span> Chitravina N. Ravikiran, Acharyanet — biographical framing of the set's compositional purpose.</li>
+      <li><span class="t">What are the characteristic features of Muthuswami Dikshitar kritis?</span> Quora compilation — Śrī Vidyā/Devī-bhakti biographical context.</li>
+      <li><span class="t">List of compositions by Muthuswami Dikshitar.</span> Wikipedia — vainika/gamaka stylistic description, chowka kāla, Guruguha mudra.</li>
+      <li><span class="t">List of compositions by Muthuswami Dikshitar.</span> Grokipedia — Kamalāmbā Navāvaraṇa and Śrī Cakra correspondence detail.</li>
+      <li><span class="t">Navagraha Kritis.</span> Grokipedia — Bṛhaspate/Tambiyappan origin anecdote.</li>
+      <li><span class="t">Do musical notes correlate with emotions? A neuro-acoustical study with Indian classical music.</span> academia.edu preprint — Chāyānaṭ/Darbārī Kannaḍā and Bahār/Miyā̃ kī Malhār EEG complexity study.</li>
+      <li><span class="t">Impact of Listening to Indian Classical Music, or Rāgas, on the Electroencephalogram: A Meta-Analysis.</span> PMC10754644, 2024 — five-study, 71-participant pooled alpha-band/fractal-dimension analysis.</li>
+      <li><span class="t">The Cognitive Impact of Indian Ragas: A Study from IIT Mandi.</span> The Indian Practitioner, 2025 — Darbāri/Jogiyā EEG-microstate study, Behera & Gupta.</li>
+      <li><span class="t">Can Musical Emotion Be Quantified With Neural Jitter Or Shimmer?</span> arXiv:1705.03543 — EEG jitter/shimmer methodology in Hindustani rāga.</li>
+      <li><span class="t">EEG Study of Ragas and its Impact on Brain Waves.</span> IJIRSET, 2017 — limbic/paralimbic engagement framing.</li>
+      <li><span class="t">Neural (EEG) Response during Creation and Appreciation.</span> arXiv:1704.05687 — performer-vs-listener EEG comparison, rāga Jay Jayanti.</li>
+      <li><span class="t">The Psychology of Indian Classical Music and 4 Important Ways that Neuroscience Meets Tradition.</span> PsychUniverse, 2025 — Mathur et al. 2015 ālāp/gat valence-arousal summary; Kunikullaya et al. 2022 alpha-band citation.</li>
+      <li><span class="t">Role of Indian Classical Music in Treating Alzheimer's Disease and Related Dementias.</span> Medical Research Archives, 2024 — AD/ADRD music-intervention review and rāga-specific circadian-effect framing.</li>
+      <li><span class="t">Raga Therapy in Neurocognitive Disorders.</span> Goyal et al., Acta Neurophysiologica, 2024 — Darbārī Kanaḍā pre/post pilot on depression, anxiety, stress, and sleep in elderly adults; dosha-based rāga-chikitsā framework and circadian dosha periods.</li>
+      <li><span class="t">Music as Add-On Therapy in the Rehabilitation Program of Parkinson's Disease Patients — A Romanian Pilot Study.</span> PMC8145473 — rhythmic auditory cueing and quality-of-life outcomes in PD rehabilitation.</li>
+      <li><span class="t">Raga Therapy: A Complementary Approach to Disease Management Through Indian Classical Music.</span> Munshi et al., 2025 — predictive-coding/affective-processing mechanism hypothesis; explicit complementary-not-replacement framing.</li>
+      <li><span class="t">Sri Muthuswami Dikshitar and Sri Vidya</span> (multi-part series) and <span class="t">Muthuswami Dikshitar</span>, sreenivasarao's blogs — dhyāna kṛti/maṅgala kṛti structure of the Kamalāmbā Navāvaraṇa set; bīja-akṣara and mātṛkā doctrine in Dīkṣitar's Sanskrit sāhitya; Śrī Vidyā Mahā-ṣoḍaśākṣarī initiation and prathamākṣara-prāsa technique.</li>
+      <li><span class="t">A Bird's Eye View of Muthuswami Dikshitar's Compositions.</span> Notes from Vid. R. Vedavalli and Vid. S. Sundar, compiled by ramsabode.com — anupallavi-omission and slow-paced rāga development as a recurring formal feature.</li>
+    </ol>
+    <span class="skt-final">तत् त्वमेव नादब्रह्म</span>
+    <p style="max-width:600px">tat tvam eva nāda-brahma — "that very sound is itself the Absolute": the closing conviction of the Nādopāsana tradition Dīkṣitar and his fellow Trinity composers worked within, in which music is not decoration of a spiritual truth but is itself a direct method of approaching one.</p>
+    <div class="footer-line">Compiled as a working scholarly reference. Sanskrit terms rendered in IAST transliteration alongside Devanāgarī. Melakartā data cross-checked against Veṅkaṭamakhin's Caturdaṇḍī-Prakāśikā combinatorics. Neuroscience claims scoped to what cited sources actually report; sample sizes and preliminary status stated explicitly rather than omitted.</div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  const holder = document.getElementById('wheelHolder');
+  if(!holder) return;
+  const size = 380, cx = size/2, cy = size/2;
+  const rInner = 60, rMid = 120, rOuter = 170;
+  const cakraNames = ["Indu","Netra","Agni","Veda","Bāṇa","Ṛtu","Ṛṣi","Vasu","Brahma","Diśi","Rudra","Āditya"];
+  const highlightMelas = [15,28,29,65];
+  let svg = `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Diagram of the 72 melakarta wheel, twelve chakras of six ragas each">`;
+  // background rings
+  svg += `<circle cx="${cx}" cy="${cy}" r="${rOuter}" fill="none" stroke="#C99A2E" stroke-opacity="0.35" stroke-width="1"/>`;
+  svg += `<circle cx="${cx}" cy="${cy}" r="${rMid}" fill="none" stroke="#C99A2E" stroke-opacity="0.35" stroke-width="1"/>`;
+  svg += `<circle cx="${cx}" cy="${cy}" r="${rInner}" fill="none" stroke="#EDE4CD" stroke-opacity="0.5" stroke-width="1"/>`;
+  let melaIndex = 1;
+  for(let c=0;c<12;c++){
+    const a0 = (c/12)*2*Math.PI - Math.PI/2;
+    const a1 = ((c+1)/12)*2*Math.PI - Math.PI/2;
+    // spoke line
+    const x1 = cx + rOuter*Math.cos(a0), y1 = cy + rOuter*Math.sin(a0);
+    svg += `<line x1="${cx}" y1="${cy}" x2="${x1}" y2="${y1}" stroke="#C99A2E" stroke-opacity="0.25" stroke-width="1"/>`;
+    // cakra label
+    const amid = (a0+a1)/2;
+    const lx = cx + (rOuter+22)*Math.cos(amid), ly = cy + (rOuter+22)*Math.sin(amid);
+    svg += `<text x="${lx}" y="${ly}" fill="#E4C878" font-family="IBM Plex Mono, monospace" font-size="8" text-anchor="middle" dominant-baseline="middle">${cakraNames[c]}</text>`;
+    // 6 melas per cakra: 3 inner ring (shuddha), 3... actually distribute 6 across inner->outer bands
+    for(let k=0;k<6;k++){
+      const ring = k<3 ? rInner + (rMid-rInner)*((k+0.5)/3) : rMid + (rOuter-rMid)*((k-3+0.5)/3);
+      const aa = a0 + (a1-a0)*((k+0.5)/6);
+      const px = cx + ring*Math.cos(aa), py = cy + ring*Math.sin(aa);
+      const isHi = highlightMelas.includes(melaIndex);
+      svg += `<circle cx="${px}" cy="${py}" r="${isHi?4.2:2.4}" fill="${isHi?'#C99A2E':'#8C2A34'}" fill-opacity="${isHi?1:0.75}"/>`;
+      melaIndex++;
+    }
+  }
+  svg += `<circle cx="${cx}" cy="${cy}" r="${rInner-14}" fill="#182645" stroke="#C99A2E" stroke-width="1.5"/>`;
+  svg += `<text x="${cx}" y="${cy-4}" fill="#E4C878" font-family="Noto Serif Devanagari, serif" font-size="15" text-anchor="middle">७२</text>`;
+  svg += `<text x="${cx}" y="${cy+13}" fill="#EDE4CD" font-family="IBM Plex Mono, monospace" font-size="8" text-anchor="middle">melakartā</text>`;
+  svg += `</svg>`;
+  holder.innerHTML = svg;
+})();
+</script>
+
+</body>
+</html>
