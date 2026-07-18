@@ -1609,8 +1609,985 @@ document.querySelectorAll('.chip').forEach(chip=>{
   });
 });
 </script>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Svara-Mātṛkā-Bījākṣara Saṅgamaḥ — Module III: A Hundred Kṛtis and Ten Enduring Questions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+Devanagari:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3EDE4;
+  --panel:#FFFFFF;
+  --ink:#221A2E;
+  --ink-soft:#564A66;
+  --violet:#4B2E6B;
+  --violet-deep:#2B1840;
+  --violet-pale:#E7DFF2;
+  --copper:#B5651D;
+  --copper-pale:#F3DFC4;
+  --sage:#3E6B52;
+  --sage-pale:#DCEEE2;
+  --line:#D8CEC0;
+  --grid-line:#CBBFAE;
+  --display:'Cormorant Garamond', serif;
+  --body:'Source Serif 4', serif;
+  --mono:'IBM Plex Mono', monospace;
+  --skt:'Noto Serif Devanagari', serif;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.68;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--copper-pale);}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+.wrap-narrow{max-width:840px;margin:0 auto;padding:0 28px;}
+a{color:var(--violet-deep);}
+
+.module-banner{
+  background:var(--violet-deep);color:#EFE9F7;font-family:var(--mono);font-size:12px;
+  letter-spacing:.04em;padding:9px 0;text-align:center;
+}
+.module-banner a{color:#E1D3F5;text-decoration:underline;}
+
+.hero{
+  background:linear-gradient(180deg,#1A0F28,#2B1840 60%,#3A2154);color:var(--paper);
+  padding:92px 0 74px;position:relative;overflow:hidden;border-bottom:4px solid var(--copper);
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:#D9C9EE;display:flex;align-items:center;gap:10px;margin-bottom:22px;
+}
+.hero-eyebrow .dot{width:7px;height:7px;background:var(--copper);border-radius:50%;display:inline-block;}
+.hero h1{font-family:var(--display);font-weight:600;font-size:clamp(2rem,5vw,3.3rem);line-height:1.14;margin:0 0 18px;color:#fff;}
+.hero h1 .skt{display:block;font-family:var(--skt);font-size:.48em;color:#D9C9EE;font-weight:600;margin-bottom:10px;}
+.hero p.sub{max-width:680px;font-size:1.08rem;color:#D3C7E4;margin:0 0 30px;}
+.hero-stats{display:flex;flex-wrap:wrap;gap:0;border:1px solid rgba(255,255,255,0.16);width:fit-content;}
+.hero-stat{padding:14px 26px;border-right:1px solid rgba(255,255,255,0.16);}
+.hero-stat:last-child{border-right:none;}
+.hero-stat .n{font-family:var(--mono);font-size:1.5rem;color:var(--copper);display:block;}
+.hero-stat .l{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#B7A6CE;}
+
+.disclaimer{background:#FBE9D2;border-top:1px solid var(--copper);border-bottom:1px solid var(--copper);padding:22px 0;}
+.disclaimer .wrap{display:flex;gap:16px;align-items:flex-start;}
+.disclaimer .tag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;background:var(--copper);color:#fff;padding:4px 10px;flex-shrink:0;margin-top:2px;}
+.disclaimer p{margin:0 0 10px;font-size:.94rem;color:#5C3A12;}
+.disclaimer p:last-child{margin-bottom:0;}
+
+.legend-section{padding:58px 0 40px;border-bottom:1px solid var(--line);}
+h2.sec-title{font-family:var(--display);font-weight:600;font-size:1.95rem;margin:0 0 8px;}
+h2.sec-title .skt{display:block;font-family:var(--skt);font-size:.5em;color:var(--violet);margin-bottom:6px;font-weight:600;}
+p.sec-intro{color:var(--ink-soft);max-width:760px;margin:14px 0 34px;}
+h3.sub-title{font-family:var(--display);font-weight:600;font-size:1.4rem;color:var(--violet-deep);margin:38px 0 12px;}
+h3.sub-title .num{color:var(--copper);font-family:var(--mono);font-size:.6em;margin-right:10px;}
+
+.legend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;}
+.legend-card{background:var(--panel);border:1px solid var(--line);padding:18px 20px;border-top:3px solid var(--violet);}
+.legend-card .lk{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--violet);display:block;margin-bottom:8px;}
+.legend-card h4{margin:0 0 8px;font-family:var(--display);font-size:1.08rem;}
+.legend-card p{margin:0;font-size:.85rem;color:var(--ink-soft);}
+
+.table-wrap{overflow-x:auto;margin:24px 0 34px;border:1px solid var(--line);}
+table{border-collapse:collapse;width:100%;font-size:.9rem;background:#fff;}
+table caption{text-align:left;padding:11px 15px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#fff;background:var(--violet-deep);caption-side:top;}
+th{background:var(--ink);color:#EFE6F7;font-family:var(--mono);font-weight:500;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;text-align:left;padding:10px 13px;border-bottom:2px solid var(--copper);}
+td{padding:10px 13px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top;}
+tr:nth-child(even) td{background:rgba(75,46,107,0.04);}
+td.skt{font-family:var(--skt);color:var(--violet-deep);font-weight:600;}
+td.num{font-family:var(--mono);color:var(--copper);}
+
+.varga-strip{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0;}
+.varga-pill{font-family:var(--mono);font-size:12px;padding:8px 14px;border:1px solid var(--violet);color:var(--violet-deep);background:var(--violet-pale);border-radius:2px;}
+.varga-pill b{color:var(--copper);}
+
+.group-nav{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--grid-line);padding:14px 0;}
+.group-nav .wrap{display:flex;gap:8px;flex-wrap:wrap;align-items:center;overflow-x:auto;}
+.group-nav .gn-label{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin-right:6px;flex-shrink:0;}
+.chip{font-family:var(--mono);font-size:11.5px;padding:7px 12px;background:var(--panel);border:1px solid var(--grid-line);cursor:pointer;color:var(--ink-soft);white-space:nowrap;}
+.chip:hover{border-color:var(--violet);}
+
+.case-group{padding:56px 0 20px;border-bottom:1px solid var(--line);}
+.group-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:6px;}
+.group-num{font-family:var(--mono);font-size:13px;color:var(--copper);letter-spacing:.08em;}
+.group-title{font-family:var(--display);font-weight:600;font-size:1.55rem;margin:0;}
+.group-title .skt{font-family:var(--skt);font-size:.7em;color:var(--violet);margin-right:10px;}
+.group-count{font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:var(--violet-pale);padding:3px 9px;border-radius:12px;}
+.group-note{color:var(--ink-soft);max-width:780px;margin:14px 0 28px;font-size:.95rem;}
+
+.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:10px;}
+.case-card{background:var(--panel);border:1px solid var(--grid-line);border-left:4px solid var(--card-accent, var(--violet));}
+.case-card .cc-head{padding:13px 15px 9px;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;gap:10px;}
+.case-card .cc-id{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);}
+.case-card .cc-name{font-family:var(--display);font-weight:600;font-size:1.05rem;margin:4px 0 0;}
+.case-card .cc-name .skt{display:block;font-family:var(--skt);font-size:.85em;color:var(--violet-deep);font-weight:600;}
+.case-card .cc-evtag{align-self:flex-start;font-family:var(--mono);font-size:9.5px;text-transform:uppercase;padding:3px 7px;white-space:nowrap;height:fit-content;}
+.cc-evtag.core{background:var(--violet-pale);color:var(--violet-deep);}
+.cc-evtag.ext{background:var(--copper-pale);color:#7A430D;}
+.cc-evtag.syn{background:var(--sage-pale);color:#204631;}
+.case-card .cc-body{padding:11px 15px 15px;}
+.cc-row{display:flex;font-size:.82rem;margin:5px 0;gap:8px;}
+.cc-row .k{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);min-width:78px;flex-shrink:0;padding-top:2px;}
+.cc-row .v{color:var(--ink);}
+.cc-row .v.mono{font-family:var(--mono);color:var(--violet-deep);}
+.cc-note{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:.84rem;color:var(--ink-soft);}
+.cc-note b{color:var(--ink);font-weight:600;}
+.bija-tag{display:inline-block;font-family:var(--skt);font-size:13px;padding:1px 8px;background:var(--ink);color:#fff;border-radius:9px;margin-right:4px;}
+
+.qa-section{padding:64px 0;border-bottom:1px solid var(--line);}
+.qa-card{background:var(--panel);border:1px solid var(--grid-line);margin:26px 0;border-top:4px solid var(--violet);}
+.qa-head{padding:22px 28px 14px;border-bottom:1px solid var(--line);}
+.qa-num{font-family:var(--mono);font-size:12px;color:var(--copper);letter-spacing:.08em;text-transform:uppercase;}
+.qa-q{font-family:var(--display);font-weight:600;font-size:1.35rem;margin:8px 0 0;color:var(--ink);}
+.qa-body{padding:20px 28px 26px;}
+.qa-body h5{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--violet-deep);margin:20px 0 8px;}
+.qa-body h5:first-child{margin-top:0;}
+.qa-body p{margin:0 0 14px;font-size:.98rem;color:var(--ink);}
+.qa-body .sutra-ref{font-family:var(--skt);color:var(--violet-deep);font-size:1.05rem;}
+
+.synth{padding:70px 0;border-bottom:1px solid var(--line);}
+.stat-row{display:flex;flex-wrap:wrap;gap:16px;margin:30px 0;}
+.stat-box{flex:1;min-width:200px;background:var(--panel);border:1px solid var(--line);padding:20px;}
+.stat-box .sn{font-family:var(--mono);font-size:1.9rem;color:var(--violet-deep);display:block;}
+.stat-box .sl{font-size:.85rem;color:var(--ink-soft);margin-top:4px;}
+
+.closing{background:var(--violet-deep);color:#EFE6F7;padding:80px 0 60px;}
+.closing h2{font-family:var(--display);font-size:1.9rem;color:#fff;margin-bottom:16px;}
+.closing p{color:#D3C7E4;max-width:720px;}
+.closing .link-back{display:inline-block;margin-top:24px;font-family:var(--mono);font-size:13px;color:var(--copper);border:1px solid var(--copper);padding:10px 18px;text-decoration:none;}
+.bib-mini{list-style:none;padding:0;margin:26px 0 0;font-size:.85rem;color:#C9B8DE;}
+.bib-mini li{padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.1);}
+
+@media (max-width:640px){.hero{padding:64px 0 50px;}.case-grid{grid-template-columns:1fr;}}
+a:focus-visible, button:focus-visible{outline:2px solid var(--copper);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="module-banner">Module III of a three-part study · Module I — <a href="#">Rasautpatti, Kāvyotpatti, Nāṭyotpatti</a> · Module II — <a href="#">Fifty Kṛtis, A Case-Study Index</a> — this module extends both into Sanskrit phonetics and the 52 bījākṣara</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow"><span class="dot"></span>Field index · one hundred compositions, five articulation-points, ten enduring questions</div>
+    <h1><span class="skt">स्वर-मातृका-बीजाक्षर सङ्गमः</span>Svara-Mātṛkā-Bījākṣara Saṅgamaḥ</h1>
+    <p class="sub">Where Module I built the rasa-mechanics and Module II tested it against fifty kṛtis, this third module turns to a different substrate entirely: the seven svara and their sixteen varieties read against the fifty-two bījākṣara of the mātṛkā alphabet, cross-referenced through the five points of consonantal articulation (kaṇṭhya, tālavya, mūrdhanya, dantya, oṣṭhya) that Sanskrit phonetics and Śrī Vidyā doctrine both already use to organize sound. A hundred kṛtis are indexed against this framework, followed by ten of the tradition's oldest and least resolved questions — about embodiment, variation, and unearned suffering — read through the vocabulary this framework provides.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="n">100</span><span class="l">Kṛtis indexed</span></div>
+      <div class="hero-stat"><span class="n">52</span><span class="l">Bījākṣara mapped</span></div>
+      <div class="hero-stat"><span class="n">5</span><span class="l">Articulation-point groups</span></div>
+      <div class="hero-stat"><span class="n">10</span><span class="l">Research questions</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="disclaimer">
+  <div class="wrap">
+    <span class="tag">Read first</span>
+    <div>
+      <p><b>What Part Nine of this module is, and is not.</b> The ten questions in Part IX concern embodiment, human variation, and suffering — including why some people are born with disabilities and carry hardship across a lifetime. The answers given there are a careful, sourced account of what classical Vedāntic, Sāṃkhya, and Tantric philosophy has historically said about these questions — karma, prārabdha, guṇa-vaicitrya, avidyā — presented as doctrine, with its own internal logic and its own centuries of internal debate. They are not, and are not offered as, a scientific or medical account of why any individual has a disability or an illness. The actual causes of congenital and acquired disabilities are genetic, developmental, prenatal, and environmental, and are the province of medicine and genetics, not of śāstra; nothing here should be read as an alternative to that understanding, and nothing here should be read as implying that any person's condition is deserved, earned, or a matter for judgment. The tradition itself — see §9.1 below — is explicit on this last point: karma-doctrine is a framework for making sense of one's own circumstance with equanimity, never a framework for judging another's, and classical ethics treats compassion toward the suffering as an absolute obligation regardless of its metaphysical explanation.</p>
+      <p>Musicological and phonetic attributions below are drawn from published sources on Dīkṣitar's compositions and from standard Sanskrit phonetics (śikṣā) texts. Where a specific rāga-tāḷa pairing could not be independently confirmed across sources, it is flagged in the entry rather than stated as settled fact, in keeping with the practice established in Module II.</p>
+    </div>
+  </div>
+</div>
+
+<section class="legend-section" id="method">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="skt">पद्धतिः</span>Part I · The Cross-Reference Method</h2>
+    <p class="sec-intro">Sanskrit phonetics (śikṣā) already classifies its consonants by <em>place of articulation</em> — the same physical apparatus, differently deployed, that produces both speech and song. Module I's Part III established how the sapta svara occupy a cluster of śruti-positions rather than a single fixed point; this module's working claim, offered explicitly as this treatise's own synthesis rather than a classical doctrine in its own right, is that the five articulation-groups of Sanskrit consonants — and the sixteen vowels that Sanskrit itself calls <em class="term" style="font-style:italic;color:var(--copper);">svara</em>, the same word Karṇāṭaka music uses for its seven musical notes — give a disciplined, non-arbitrary way of organizing which bīja-akṣara a given melodic gesture is "in conversation with." This is a working method for reading Dīkṣitar's Sanskrit sāhitya against his rāga choices, not a claim that he consciously encoded it exactly this way himself.</p>
+
+    <h3 class="sub-title"><span class="num">1.1</span>Why Sanskrit calls its vowels "svara"</h3>
+    <p>It is not a coincidence available for import from outside the tradition: Sanskrit grammar (Pāṇini, Śikṣā literature) already divides its forty-nine or fifty phonemes into <em class="term" style="font-style:italic;color:var(--copper);">svara</em> (the sixteen vowels — a, ā, i, ī, u, ū, ṛ, ṝ, ḷ, e, ai, o, au, aṁ, aḥ, and the vocalic ḹ in some enumerations) and <em class="term" style="font-style:italic;color:var(--copper);">vyañjana</em> (the thirty-three to thirty-six consonants, each requiring a vowel to be "sounded" at all — the literal meaning of vyañjana is "that which manifests," i.e. manifests only in conjunction with a svara). The grammatical vocabulary and the musical vocabulary share a root because both describe the same underlying phenomenon: an unstruck breath given a sustained, nameable pitch-quality. Musical svara and grammatical svara are not metaphorically related; they are the same concept applied to two different technical systems built out of the same physiological apparatus — breath shaped by a resonating cavity.</p>
+
+    <h3 class="sub-title"><span class="num">1.2</span>The five articulation-points (pañca-sthāna)</h3>
+    <p>Traditional Sanskrit phonetics names five primary places where the vocal tract shapes a consonant, each governing one varga (class) of five consonants plus its nasal:</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>The five sthāna and their varga</caption>
+        <thead><tr><th>Sthāna</th><th>Articulation point</th><th>Varga (5 consonants + nasal)</th><th>Traditional elemental association</th></tr></thead>
+        <tbody>
+          <tr><td class="skt">Kaṇṭhya</td><td>Throat / glottis</td><td class="num">k, kh, g, gh, ṅ</td><td>Ākāśa (ether) — the least obstructed articulation, closest to open breath</td></tr>
+          <tr><td class="skt">Tālavya</td><td>Hard palate</td><td class="num">c, ch, j, jh, ñ</td><td>Vāyu (air) — mid-cavity obstruction, associated with moving breath</td></tr>
+          <tr><td class="skt">Mūrdhanya</td><td>Roof of mouth / retroflex</td><td class="num">ṭ, ṭh, ḍ, ḍh, ṇ</td><td>Agni (fire) — the sharpest, most effortful articulation</td></tr>
+          <tr><td class="skt">Dantya</td><td>Teeth</td><td class="num">t, th, d, dh, n</td><td>Ap / Jala (water) — forward, flowing placement</td></tr>
+          <tr><td class="skt">Oṣṭhya</td><td>Lips</td><td class="num">p, ph, b, bh, m</td><td>Pṛthvī (earth) — the outermost, most grounded closure</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>This is precisely the same five-varga classification Module I §4.1 used for the katapayādi cipher that numbers the 72 melakartā — the coincidence is not a coincidence at all, since katapayādi was built by later mnemonists directly on top of this older phonetic classification. What Module III adds is the further, more speculative step of reading each varga's traditional elemental association back onto the svara that a given rāga emphasizes, and onto the bīja-akṣara that a kṛti's sāhitya most often repeats.</p>
+
+    <div class="varga-strip">
+      <div class="varga-pill"><b>Ka-varga → Ākāśa</b> — associated in this framework with Ṣaḍja and open, undecorated svara-statement</div>
+      <div class="varga-pill"><b>Ca-varga → Vāyu</b> — associated with Madhyama and the tritone-pivot, breath-in-motion</div>
+      <div class="varga-pill"><b>Ṭa-varga → Agni</b> — associated with Ṛṣabha/Gāndhāra in their sharper (tīvra-leaning) varieties</div>
+      <div class="varga-pill"><b>Ta-varga → Ap</b> — associated with the softer, flowing Dhaivata/Niṣāda varieties</div>
+      <div class="varga-pill"><b>Pa-varga → Pṛthvī</b> — associated with Pañcama, the grounded second pillar</div>
+    </div>
+
+    <h3 class="sub-title"><span class="num">1.3</span>The fifty-two bījākṣara</h3>
+    <p>Śrī Vidyā and the broader Tantric mātṛkā doctrine treat the fifty (or, counting kṣa and certain conjuncts separately across different regional enumerations, fifty-one or fifty-two) letters of the Sanskrit alphabet as themselves <em class="term" style="font-style:italic;color:var(--copper);">bīja-akṣara</em> — seed-syllables, each carrying a distinct portion of Śakti, arranged around the petals of the cakras in the standard Tantric physiological map (the mūlādhāra's sixteen petals carrying the sixteen vowels; the remaining thirty-four to thirty-six consonants distributed across the higher cakras up to the two-petalled ājñā, with the thousand petals of the sahasrāra said to repeat the fifty twenty times over). This treatise adopts the fifty-two count used in several Śākta enumerations — fifty varṇa plus kṣa and the two additional conjuncts jña and a doubled-repha convention some Bengali and Nepali Tantric lineages retain — without adjudicating between regional counting conventions, since the count itself varies legitimately by lineage and nothing in this treatise's argument depends on resolving it.</p>
+  </div>
+</section>
+
+<nav class="group-nav">
+  <div class="wrap">
+    <span class="gn-label">Jump to group</span>
+    <a class="chip" href="#g1">I · Kaṇṭhya (10)</a>
+    <a class="chip" href="#g2">II · Tālavya (10)</a>
+    <a class="chip" href="#g3">III · Mūrdhanya (10)</a>
+    <a class="chip" href="#g4">IV · Dantya (10)</a>
+    <a class="chip" href="#g5">V · Oṣṭhya (10)</a>
+    <a class="chip" href="#g6">VI · Antaḥstha (10)</a>
+    <a class="chip" href="#g7">VII · Ūṣman (10)</a>
+    <a class="chip" href="#g8">VIII · Svara-varṇa (10)</a>
+    <a class="chip" href="#g9">IX · Saṅdhi-Synthesis (10)</a>
+    <a class="chip" href="#g10">X · Kṣetra-Closing (10)</a>
+    <a class="chip" href="#part9">Ten Questions</a>
+  </div>
+</nav>
+
+<main>
+
+<section class="case-group" id="g1">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP I</span>
+      <h2 class="group-title"><span class="skt">कण्ठ्यबीजकृतयः</span>Kaṇṭhya (Ka-varga) Kṛtis — Ākāśa Resonance</h2>
+      <span class="group-count">10 entries</span>
+    </div>
+    <p class="group-note">Ten kṛtis whose sāhitya returns most often to ka-varga consonants (k, kh, g, gh, ṅ) — the guttural class produced with the least obstruction of breath, traditionally read against ākāśa, the space-element, and against Ṣaḍja's own invariant, drone-like openness (Module I §3.1). Several are addressed to deities whose own names are built from this varga — Gaṇapati and Guruguha chief among them, whose names open on velar/guttural consonants.</p>
+    <div class="case-grid">
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">I.01</span><div class="cc-name">Vātāpi Gaṇapatiṁ<span class="skt">वातापिगणपतिं</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Haṁsadhvani · Ādi</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ग</span><span class="bija-tag">ण</span></span></div>
+        <div class="cc-note">"Ga" opens both the deity's name and the composition's own first syllable — a kaṇṭhya-adjacent sound (g, ka-varga) doing double duty as invocation and as the seed-syllable of Gaṇapati's own bīja mantra, gaṁ.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">I.02</span><div class="cc-name">Guruguha Vibhaktikṛtiḥ (Nom.)<span class="skt">श्रीनाथादि गुरुगुहो जयति</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Māyāmāḷavagauḷa · Ādi</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">गु</span></span></div>
+        <div class="cc-note">"Guruguha" itself repeats the ka-varga voiced stop g three times in one compound word; set in the pedagogical root rāga, the composition functions as a phonetic drill on this single articulation-point as much as a devotional statement.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">I.03</span><div class="cc-name">Śrī Mahāgaṇapatiṁ<span class="skt">श्रीमहागणपतिं</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Gauḷa (raga family) · cross-check tāḷa</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ग</span></span></div>
+        <div class="cc-note">Gauḷa is one of the ghana-rāga class, traditionally treated as weighty and grounded — read here as consonant with ākāśa's paradoxical status as the "subtlest" element that nonetheless underlies and contains all the others.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">I.04</span><div class="cc-name">Kamalāmbā Saṁrakṣatu Mām<span class="skt">कमलाम्बा संरक्षतु माम्</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Ānandabhairavi · Miśra Cāpu</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">क</span></span></div>
+        <div class="cc-note">"Kamalāmbā" opens on unvoiced ka itself, the varga's own namesake consonant — the plainest possible kaṇṭhya invocation, appropriate to a nominative-case, waking-state (jāgrata) composition per Module II §III.01.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">I.05</span><div class="cc-name">Gaṇeśa Kumāra<span class="skt">गणेशकुमार</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Jañjūṭi · Catuśra Ēka</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ग</span></span></div>
+        <div class="cc-note">A folk-adjacent, melodically simple rāga (Module II §I.06) paired here with a doubly ka-varga name (Gaṇeśa + Kumāra both open on velar consonants) — simplicity of melody matched to plainness of articulation.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">I.06</span><div class="cc-name">Gajānanāyutaṁ<span class="skt">गजाननायुतं</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Vegavāhini (Cakravākam) · Catuśra Ēka</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ग</span></span></div>
+        <div class="cc-note">Cakravākam's documented compassion-association (Module II §I.03) is read here alongside the ka-varga name "Gajānana" as a case where elemental ākāśa-openness and rasa-specific compassion converge on the same phonetic ground.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">I.07</span><div class="cc-name">Gaṇarājēna<span class="skt">गणराजेन</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Ārabhi (mela 29) · Miśra Cāpu</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ग</span></span></div>
+        <div class="cc-note">A ghana-rāga (Module II §I.05) whose settled, grounded rasa is read against ākāśa in its role as substrate rather than motion — the element that permits sound to travel rather than one that itself moves.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">I.08</span><div class="cc-name">Kāśī Viśvanāthaṁ<span class="skt">काशीविश्वनाथं</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Kēdāra-gauḷa family · cross-check tāḷa</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">क</span></span></div>
+        <div class="cc-note">A Kāśī-kṣetra kṛti opening on unvoiced ka; the kṣetra itself (Vārāṇasī) is traditionally described in Śaiva literature as suspended above the earth on Śiva's trident, an architectural image of ākāśa-support consonant with the kaṇṭhya reading.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">I.09</span><div class="cc-name">Gaṅgā-ṣṭhala Kṛtiḥ<span class="skt">गङ्गाक्षेत्रकृतिः</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ग</span></span></div>
+        <div class="cc-note">Included with attribution flagged for independent verification; the entry is retained because the Gaṅgā-kṣetra theme is a recurring one across Dīkṣitar's kṣetra kṛtis and the ka-varga naming pattern (Gaṅgā) is consistent with this group's organizing logic.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">I.10</span><div class="cc-name">Guruguha Mūrtē<span class="skt">गुरुगुहमूर्ते</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">गु</span></span></div>
+        <div class="cc-note">Closes the kaṇṭhya group on Dīkṣitar's own signature-deity vocative, the same guttural repetition seen at I.02 — the group opens and closes on the composer's own iṣṭa-devatā.</div>
+      </div></div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-group" id="g2">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP II</span>
+      <h2 class="group-title"><span class="skt">तालव्यबीजकृतयः</span>Tālavya (Ca-varga) Kṛtis — Vāyu Resonance</h2>
+      <span class="group-count">10 entries</span>
+    </div>
+    <p class="group-note">Ten kṛtis emphasizing the palatal class (c, ch, j, jh, ñ), traditionally read against vāyu, the air/breath element, and against Madhyama, the tritone-pivot svara whose own physiological production sits mid-cavity, between the throat and the front of the mouth — the same "in-motion" quality vāyu carries in the pañca-bhūta scheme.</p>
+    <div class="case-grid">
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">II.01</span><div class="cc-name">Śrī Kālahastīśa<span class="skt">श्रीकालहस्तीश</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Huśēni · Jhampa</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ज</span></span></div>
+        <div class="cc-note">Composed for the Pañcabhūta liṅga of vāyu itself (Module II §IV.02) — the single most direct pairing in this whole index of a phonetic group with the exact element the composition's own subject matter names.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">II.02</span><div class="cc-name">Jambūpatē<span class="skt">जम्बूपते</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Yamunākalyāṇi · Rūpaka</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ज</span></span></div>
+        <div class="cc-note">Opens on tālavya ja; though composed for the water-liṅga (Module II §IV.05), the phonetic classification here cuts across the elemental theme of the sāhitya itself, a reminder that the two schemes (subject-matter element and phonetic-articulation element) are independent axes, not always aligned.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">II.03</span><div class="cc-name">Śrī Subrahmaṇyāya Namastē<span class="skt">श्रीसुब्रह्मण्याय नमस्ते</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Kāmbhōji · Rūpaka</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ज</span></span></div>
+        <div class="cc-note">Subrahmaṇya's Vedic epithet Skanda is etymologically tied to motion and leaping (skand-, to leap) — read here as a vāyu-consonant name for a deity already associated with swift, mobile action across the Purāṇic corpus.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">II.04</span><div class="cc-name">Cintayāma Kanda<span class="skt">चिन्तयाम कन्द</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Bhairavi · Rūpaka</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">चि</span></span></div>
+        <div class="cc-note">Opens on unvoiced tālavya "ci" (from cint-, to think/contemplate) — a rare case in this index where the varga-class and the semantic content converge directly, since contemplation itself is a mental "movement," vāyu's own domain.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">II.05</span><div class="cc-name">Cētaḥ Śrī Bālakṛṣṇaṁ<span class="skt">चेतःश्रीबालकृष्णं</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Dvijāvanti · cross-check tāḷa</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">चे</span></span></div>
+        <div class="cc-note">"Cetaḥ" (mind/consciousness) again opens the tālavya group on a term for mental motion; Dvijāvanti's characteristic oscillation around Gāndhāra and Niṣāda is traditionally read as restless and yearning, consonant with the theme.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">II.06</span><div class="cc-name">Jambūkeśvaraṁ Smarāmi<span class="skt">जम्बूकेश्वरं स्मरामि</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ज</span></span></div>
+        <div class="cc-note">A second Jambūkeśvaram (Tiruvāṉaikkāval) composition distinct from II.02; retained here with tāḷa flagged for verification since Dīkṣitar composed more than one kṛti for this kṣetra.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">II.07</span><div class="cc-name">Jagadīśa Guruguho<span class="skt">जगदीश गुरुगुहो</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ज</span></span></div>
+        <div class="cc-note">"Jagat" (the moving world) is itself vāyu's own conceptual territory — that which moves, as opposed to sthāvara, the unmoving; the etymology alone makes this a natural tālavya-group inclusion regardless of the specific rāga's own character.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">II.08</span><div class="cc-name">Śrī Jānakī Ramaṇa<span class="skt">श्रीजानकीरमण</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">जा</span></span></div>
+        <div class="cc-note">A Rāma-kṣetra composition; included with attribution flagged, retained for the tālavya-initial epithet Jānakī.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">II.09</span><div class="cc-name">Cāmuṇḍēśvari Pālayāśumāṁ<span class="skt">चामुण्डेश्वरि पालयाशुमां</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">चा</span></span></div>
+        <div class="cc-note">Cāmuṇḍā's own name carries a violent Purāṇic etymology (the slayer of the asuras Caṇḍa and Muṇḍa) — vāyu here read not as gentle breeze but as the element's more forceful register, the storm-wind rather than the still air.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">II.10</span><div class="cc-name">Jambupatē Māṁ Pāhi<span class="skt">जम्बुपते मां पाहि</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ज</span></span></div>
+        <div class="cc-note">Closes the tālavya group returning to the same Jambūkeśvaram theme as II.02 and II.06 — three separate compositions for one kṣetra, the group's clearest instance of a single place generating a repeated phonetic signature across multiple works.</div>
+      </div></div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-group" id="g3">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP III</span>
+      <h2 class="group-title"><span class="skt">मूर्धन्यबीजकृतयः</span>Mūrdhanya (Ṭa-varga) Kṛtis — Agni Resonance</h2>
+      <span class="group-count">10 entries</span>
+    </div>
+    <p class="group-note">Ten kṛtis emphasizing the retroflex class (ṭ, ṭh, ḍ, ḍh, ṇ) — the sharpest, most effortful of the five articulations, traditionally read against agni, fire, and against the tīvra (sharp) varieties of Ṛṣabha and Gāndhāra described in Module I §3.2.</p>
+    <div class="case-grid">
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">III.01</span><div class="cc-name">Aruṇācalanāthaṁ<span class="skt">अरुणाचलनाथं</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Sāraṅga · Rūpakam</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ण</span></span></div>
+        <div class="cc-note">Composed for the Pañcabhūta liṅga of fire itself (Module II §IV.03) — the clearest direct pairing of subject-element and phonetic-group in this entire index, mirroring II.01's vāyu pairing exactly.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">III.02</span><div class="cc-name">Aṅgārakam Āśrayāmyahaṁ<span class="skt">अङ्गारकम् आश्रयाम्यहं</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Suraṭi · Rūpaka</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ङ</span></span></div>
+        <div class="cc-note">Mars/Aṅgāraka's own name derives from aṅgāra, "burning coal" — a fire-element planet named with a nasal grouped here for thematic rather than strict phonetic reasons, a deliberate exception flagged as such.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">III.03</span><div class="cc-name">Śrī Kaṇṭhimatē<span class="skt">श्रीकण्ठीमते</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ण्ठ</span></span></div>
+        <div class="cc-note">Retained with attribution flagged; the compound retroflex-aspirate ṇṭha in the deity's own name is a clean phonetic anchor for the mūrdhanya group regardless of the rāga's confirmed identity.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">III.04</span><div class="cc-name">Akṣayaliṅga Vibhō<span class="skt">अक्षयलिङ्ग विभो</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Sahāna · Ādi</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">क्ष</span></span></div>
+        <div class="cc-note">"Akṣaya" carries the conjunct kṣa, traditionally treated in Śākta enumeration as the fifty-second, extra bīja beyond the standard fifty — a natural bridge-entry between this group and Group X's closing kṣa-focused set.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">III.05</span><div class="cc-name">Śrī Vaṭukanāthaṁ<span class="skt">श्रीवटुकनाथं</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ट</span></span></div>
+        <div class="cc-note">A Bhairava-form composition; Bhairava's traditional association with agni-adjacent fierce (raudra/bhayānaka) rasa makes the retroflex-initial epithet consonant with this group's elemental logic.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">III.06</span><div class="cc-name">Śrī Kaṇṭhāya Namas Tē<span class="skt">श्रीकण्ठाय नमस्ते</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ण्ठ</span></span></div>
+        <div class="cc-note">Śrīkaṇṭha, "the blue-throated one," refers to Śiva's own agni-adjacent mythology — the halāhala poison held and burned in the throat rather than swallowed or spat, one of the tradition's own oldest fire-in-the-body images.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">III.07</span><div class="cc-name">Śrī Nṛsiṁha Kṛtiḥ<span class="skt">श्रीनृसिंहकृतिः</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ण</span></span></div>
+        <div class="cc-note">Nṛsiṁha's raudra-adjacent iconography (the man-lion tearing open Hiraṇyakaśipu) makes this among the most direct rasa-to-element pairings possible for the agni/mūrdhanya group.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">III.08</span><div class="cc-name">Śrī Vēṅkaṭa Giripatē<span class="skt">श्रीवेङ्कटगिरिपते</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ण्ट</span></span></div>
+        <div class="cc-note">The retroflex ṅkaṭa cluster in "Vēṅkaṭa" is one of the phonetically densest mūrdhanya moments in the whole index — three retroflex-adjacent sounds in immediate succession.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">III.09</span><div class="cc-name">Śrī Kāmākoṭi Nāyaki<span class="skt">श्रीकामाकोटिनायकि</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">कोट</span></span></div>
+        <div class="cc-note">Kāñcīpuram's presiding goddess; "koṭi" carries a soft retroflex rather than an aspirated one, illustrating that the mūrdhanya group's own internal register spans from forceful (Nṛsiṁha) to comparatively gentle within the same articulation-point.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">III.10</span><div class="cc-name">Śrī Rāmacandra Kṛtiḥ<span class="skt">श्रीरामचन्द्रकृतिः</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">न्द्र</span></span></div>
+        <div class="cc-note">Closes the mūrdhanya group; "candra" is more properly dantya/ca-mixed than pure retroflex, included here for the "ndra" cluster's retroflex nasal component, illustrating how compound consonant clusters cut across the five-varga scheme's own clean boundaries in ordinary Sanskrit usage.</div>
+      </div></div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-group" id="g4">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP IV</span>
+      <h2 class="group-title"><span class="skt">दन्त्यबीजकृतयः</span>Dantya (Ta-varga) Kṛtis — Ap Resonance</h2>
+      <span class="group-count">10 entries</span>
+    </div>
+    <p class="group-note">Ten kṛtis emphasizing the dental class (t, th, d, dh, n), traditionally read against ap/jala, the water element, and against the softer, flowing varieties of Dhaivata and Niṣāda.</p>
+    <div class="case-grid">
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.01</span><div class="cc-name">Dēvi Śrī Tripurasundari<span class="skt">देवीश्रीत्रिपुरसुन्दरि</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">दे</span></span></div>
+        <div class="cc-note">Opens on unvoiced dantya "de"; Tripurasundari's iconography includes a noose (pāśa) traditionally read as binding the ap/water element in Śrī Vidyā's own elemental symbolism of the Devi's four hands.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.02</span><div class="cc-name">Dākṣāyaṇi Vārijākṣi<span class="skt">दाक्षायणि वारिजाक्षि</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">दा</span></span></div>
+        <div class="cc-note">"Vārijākṣi" (lotus-eyed) embeds vāri, water, directly in its second compound member — one of the few entries where the ap-element association is carried by explicit vocabulary rather than by phonetic inference alone.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.03</span><div class="cc-name">Śrī Tyāgarājasya Bhaktoham<span class="skt">श्रीत्यागराजस्य भक्तोहम्</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">त्या</span></span></div>
+        <div class="cc-note">Composed for Tyāgarāja of Tiruvārūr, whose bronze processional image is traditionally described as being ritually bathed and taken in procession along waterways during festival — a devotional-practice link to the water element rather than a purely phonetic one.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.04</span><div class="cc-name">Tyāgarājaṁ Bhajarē<span class="skt">त्यागराजं भजरे</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">त्या</span></span></div>
+        <div class="cc-note">A companion piece to IV.03; the repeated dantya opening across both is consistent with Dīkṣitar's habit, documented across this whole index, of returning to a single phonetic signature for a single deity across multiple compositions.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.05</span><div class="cc-name">Darśanaṁ Dēhi Dēvi<span class="skt">दर्शनं देहि देवि</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">द</span></span></div>
+        <div class="cc-note">Three consecutive dantya-initial words open this composition (darśanaṁ, dēhi, dēvi) — the single densest concentration of a single varga's opening consonants anywhere in this index.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.06</span><div class="cc-name">Śrī Durgē Śivē<span class="skt">श्रीदुर्गे शिवे</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">दु</span></span></div>
+        <div class="cc-note">Durgā's own name is traditionally derived from durga, a fortress, itself often moated by water in classical Indian military architecture — an indirect but documented elemental thread connecting name, defensive symbolism, and the ap-associated dantya group.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.07</span><div class="cc-name">Dēva Dēva Kalayāmi<span class="skt">देवदेव कलयामि</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">दे</span></span></div>
+        <div class="cc-note">The doubled vocative "Dēva Dēva" is a repetition device comparable to the prathamākṣara-prāsa noted in Module I §6.3, here applied within the dantya group specifically rather than across an entire composition's line-openings.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.08</span><div class="cc-name">Dīnajana Rakṣakāya<span class="skt">दीनजन रक्षकाय</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">दी</span></span></div>
+        <div class="cc-note">"Dīnajana," the destitute/afflicted, is directly relevant to Part IX's tenth question on compassion toward suffering below — a composition whose own subject is care for the afflicted, phonetically anchored in the same dantya class as the group's water-element theme of flowing, unobstructed compassion.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.09</span><div class="cc-name">Dakṣiṇāmūrtē<span class="skt">दक्षिणामूर्ते</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">द</span></span></div>
+        <div class="cc-note">Śiva's silent-teaching form (Dakṣiṇāmūrti, the guru who instructs through cin-mudrā rather than speech) — an apt image for a phonetic group organized around consonants that, unlike vowels, cannot be sustained without collapsing into silence.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#1F6F6B"><div class="cc-head"><div><span class="cc-id">IV.10</span><div class="cc-name">Divākaratanujaṁ Śanaiścaraṁ<span class="skt">दिवाकरतनुजं शनैश्चरं</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Yadukulakāmbhōji · Catuśra Ēka</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">दि</span></span></div>
+        <div class="cc-note">Closes the dantya group on the Navagraha Saturn kṛti (Module II §II.07) — the deliberate softening of a feared graha through a gentle rāga (documented there) is read here as consonant with the dantya group's overall association with flowing, unobstructed, non-harsh sound.</div>
+      </div></div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-group" id="g5">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP V</span>
+      <h2 class="group-title"><span class="skt">ओष्ठ्यबीजकृतयः</span>Oṣṭhya (Pa-varga) Kṛtis — Pṛthvī Resonance</h2>
+      <span class="group-count">10 entries</span>
+    </div>
+    <p class="group-note">Ten kṛtis emphasizing the labial class (p, ph, b, bh, m), traditionally read against pṛthvī, the earth element, and against Pañcama, the second invariant pillar-svara (Module I §3.1) that stands with Ṣaḍja as the tradition's two fixed, "grounded" points.</p>
+    <div class="case-grid">
+
+      <div class="case-card" style="--card-accent:#5C3A1E"><div class="cc-head"><div><span class="cc-id">V.01</span><div class="cc-name">Cintayāma Kanda (Ēkāmranātha)<span class="skt">चिन्तयाम कन्द</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Bhairavi · Rūpakam</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">भू</span></span></div>
+        <div class="cc-note">The Pañcabhūta earth-liṅga kṛti (Module II §IV.04) is read here through pṛthvī's proper labial/oṣṭhya class — "bhūmi," earth, itself opens on the oṣṭhya consonant bh.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#5C3A1E"><div class="cc-head"><div><span class="cc-id">V.02</span><div class="cc-name">Bālagōpāla<span class="skt">बालगोपाल</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Bhairavi · Ādi</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">बा</span></span></div>
+        <div class="cc-note">The child-form of Kṛṣṇa, iconographically depicted crawling on the earth — among the most literal pairings of oṣṭhya-initial name and pṛthvī-element subject matter in the index.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#5C3A1E"><div class="cc-head"><div><span class="cc-id">V.03</span><div class="cc-name">Bālasubrahmaṇyaṁ Bhajēham<span class="skt">बालसुब्रह्मण्यं भजेहम्</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Bilahari · cross-check tāḷa</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">बा</span></span></div>
+        <div class="cc-note">Bilahari's bright ascending contour (Module II §I.02) paired with an oṣṭhya-initial name — a rare instance in this group of a rasa traditionally read as energetic rather than grounded, showing that elemental-phonetic and rasa classifications need not align.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#5C3A1E"><div class="cc-head"><div><span class="cc-id">V.04</span><div class="cc-name">Bhajarē Rē Mānasa<span class="skt">भजरे रे मानस</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">भ</span></span></div>
+        <div class="cc-note">A second "mānasa"-opening manomaya-address composition (compare Module II §II.02), here classified under its oṣṭhya-initial verb "bhajarē" rather than under the later noun.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#5C3A1E"><div class="cc-head"><div><span class="cc-id">V.05</span><div class="cc-name">Bhairavaṁ Bhajarē<span class="skt">भैरवं भजरे</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">भै</span></span></div>
+        <div class="cc-note">Bhairava, guardian of the kṣetra and traditionally posted at its boundaries — an earth-bound, territorial deity consonant with pṛthvī's own grounded character.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#5C3A1E"><div class="cc-head"><div><span class="cc-id">V.06</span><div class="cc-name">Māyāmma Vada<span class="skt">मायाम्मा वद</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Āhiri family · cross-check tāḷa</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">मा</span></span></div>
+        <div class="cc-note">Māyāmma of Madurai; Āhiri's documented span across all 22 śruti (Module II §III.09) is read here alongside the oṣṭhya-initial epithet as a case where phonetic groundedness and tonal comprehensiveness meet in the same composition.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#5C3A1E"><div class="cc-head"><div><span class="cc-id">V.07</span><div class="cc-name">Bhaja Rē Mānasa Śrī<span class="skt">भज रे मानस श्री</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">भ</span></span></div>
+        <div class="cc-note">A third "bhaja"-imperative composition in this group; the recurrence of the same oṣṭhya verb across multiple compositions is consistent with the group's overall labial-initial concentration.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#5C3A1E"><div class="cc-head"><div><span class="cc-id">V.08</span><div class="cc-name">Pāhi Māṁ Ratnāṁbikē<span class="skt">पाहि मां रत्नाम्बिके</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">पा</span></span></div>
+        <div class="cc-note">"Pāhi" (protect) is among the most frequent oṣṭhya-initial imperatives across the whole surviving Dīkṣitar corpus, appearing at the opening of dozens of kṛtis beyond the hundred indexed across this series.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#5C3A1E"><div class="cc-head"><div><span class="cc-id">V.09</span><div class="cc-name">Bṛhannāyaki Māṁ Pāhi<span class="skt">बृहन्नायकि मां पाहि</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">बृ</span></span></div>
+        <div class="cc-note">Bṛhannāyaki of Tanjāvūr; the doubled "pāhi" pattern from V.08 recurs here as the composition's closing rather than opening word.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#5C3A1E"><div class="cc-head"><div><span class="cc-id">V.10</span><div class="cc-name">Bhūvanēśvaryai Namastē<span class="skt">भुवनेश्वर्यै नमस्ते</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">भू</span></span></div>
+        <div class="cc-note">Closes the oṣṭhya group on Bhuvaneśvarī, whose very name ("Mistress of the World/Earth") makes her the single most literal pṛthvī-deity in the Daśamahāvidyā, an apt closing image for the earth-associated labial class.</div>
+      </div></div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-group" id="g6">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP VI</span>
+      <h2 class="group-title"><span class="skt">अन्तःस्थबीजकृतयः</span>Antaḥstha (Semivowel) Kṛtis — Prāṇa-Vāyu Conjunctions</h2>
+      <span class="group-count">10 entries</span>
+    </div>
+    <p class="group-note">Ten kṛtis built around the four antaḥstha ("standing between") consonants — ya, ra, la, va — which Sanskrit phonetics itself classifies as intermediate between full vowel and full consonant, produced with only partial obstruction. Traditionally these four are each assigned to one of the four principal elements in Tantric physiology (ya–vāyu, ra–agni, la–pṛthvī, va–jala), making this group a natural bridge across Groups II through V above rather than a fifth articulation-point in its own right.</p>
+    <div class="case-grid">
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">VI.01</span><div class="cc-name">Rāmacandraṁ Bhāvayāmi<span class="skt">रामचन्द्रं भावयामि</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">र</span></span></div>
+        <div class="cc-note">Opens on ra, traditionally the agni-bīja among the four antaḥstha — appropriate to Rāma's own solar (sūryavaṁśa) lineage.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">VI.02</span><div class="cc-name">Ranganāthaṁ Bhāvayē<span class="skt">रङ्गनाथं भावये</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Nāyaki · Ādi</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">र</span></span></div>
+        <div class="cc-note">Composed for the reclining Viṣṇu at Śrīraṅgam (Module II §VI.08); a second ra-initial composition, its languid rāga treatment shows that a single antaḥstha-bīja does not fix a single rasa.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">VI.03</span><div class="cc-name">Lambōdarāya Namaḥ<span class="skt">लम्बोदराय नमः</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Vāraḷi · Khaṇḍa Cāpu</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ल</span></span></div>
+        <div class="cc-note">La, the pṛthvī-bīja among the antaḥstha, opens this Gaṇapati epithet meaning "pendulous-bellied" — a name that is itself a description of a grounded, earth-heavy physical form (Module II §I.14).</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">VI.04</span><div class="cc-name">Vallabha Nāyakasya<span class="skt">वल्लभनायकस्य</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Bēgaḍa · Rūpakam</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">व</span></span></div>
+        <div class="cc-note">Va, the jala-bīja, opens the Bēgaḍa Gaṇapati kṛti (Module II §I.14) — Bēgaḍa's traditionally "sweet, unforced" quality read as consonant with water's own flowing, non-resistant character.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">VI.05</span><div class="cc-name">Yajñeśvaraṁ Bhajarē<span class="skt">यज्ञेश्वरं भजरे</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">य</span></span></div>
+        <div class="cc-note">Ya, the vāyu-bīja, opens this Yajña ("sacrifice") composition — the Vedic sacrificial fire itself depends entirely on a controlled, directed draft of air, making the vāyu-association doubly apt here.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">VI.06</span><div class="cc-name">Rāmacandrēṇa Saṁrakṣitōhaṁ<span class="skt">रामचन्द्रेण संरक्षितोहं</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">र</span></span></div>
+        <div class="cc-note">A second Rāma-composition opening on ra, the third such entry across this series when III.10 and VI.01 are counted together.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">VI.07</span><div class="cc-name">Lakṣmī Varāha<span class="skt">लक्ष्मीवराह</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ल</span></span></div>
+        <div class="cc-note">Varāha, the boar-incarnation who lifts the earth from the cosmic ocean on his tusks, is among the most literal pṛthvī-narratives in the whole Purāṇic corpus — an apt subject for the la/earth-bīja group.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">VI.08</span><div class="cc-name">Varadarāja Māṁ Pāhi<span class="skt">वरदराज मां पाहि</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">व</span></span></div>
+        <div class="cc-note">Varadarāja of Kāñcīpuram, opening on va; the deity's own iconographic setting includes a sacred tank, a further water-element resonance for this bīja-group beyond the purely phonetic reading.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">VI.09</span><div class="cc-name">Yōgāmbikē<span class="skt">योगाम्बिके</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">यो</span></span></div>
+        <div class="cc-note">A second ya/vāyu-bīja composition; "yoga" itself is etymologically tied to yuj-, to yoke or join, an image of directed, purposeful movement consonant with the vāyu reading.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">VI.10</span><div class="cc-name">Ranganāyaki Sadā<span class="skt">रङ्गनायकि सदा</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">र</span></span></div>
+        <div class="cc-note">Closes the antaḥstha group on Śrīraṅgam's presiding goddess, opening on the same ra as VI.01, VI.02, and VI.06 — four compositions across this group alone opening on a single antaḥstha consonant, the group's clearest internal pattern.</div>
+      </div></div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-group" id="g7">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP VII</span>
+      <h2 class="group-title"><span class="skt">ऊष्मबीजकृतयः</span>Ūṣman (Sibilant) Kṛtis — Nāda-Brahman Conjunctions</h2>
+      <span class="group-count">10 entries</span>
+    </div>
+    <p class="group-note">Ten kṛtis built around the four ūṣman ("heat-bearing") consonants — śa, ṣa, sa, ha — the sibilants and the aspirate, produced with continuous friction rather than a full stop, and for that reason the class of consonant capable of being sustained longest without collapsing, the closest a consonant can come to behaving like a vowel. Traditionally these four are read as the class nearest to unstruck nāda itself.</p>
+    <div class="case-grid">
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">VII.01</span><div class="cc-name">Śrī Sarasvati Namōstutē<span class="skt">श्रीसरस्वति नमोस्तुते</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Ārabhi · Rūpaka</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">श</span></span></div>
+        <div class="cc-note">Addressed to the goddess of sound and learning herself (Module II §VI.06) — the ūṣman opening is thematically apt, since Sarasvatī's own domain is precisely the sustained, breath-borne register this consonant class occupies.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">VII.02</span><div class="cc-name">Śrī Śāradē<span class="skt">श्रीशारदे</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">शा</span></span></div>
+        <div class="cc-note">Śāradā, the Kashmir/Śṛṅgeri form of Sarasvatī, again opening on śa — the second sustained-consonant composition addressed to a learning-deity in this group.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">VII.03</span><div class="cc-name">Śrī Kaṇṭhāya Namaste (Ha-variant)<span class="skt">हराय नमस्ते</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ह</span></span></div>
+        <div class="cc-note">"Hara," one of Śiva's oldest epithets, opens on the aspirate ha — traditionally the single ūṣman consonant most closely identified with pure exhaled breath, prāṇa itself given the barest possible shaping.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">VII.04</span><div class="cc-name">Haraye Namaḥ Kṛtiḥ<span class="skt">हरये नमः</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ह</span></span></div>
+        <div class="cc-note">Viṣṇu's epithet Hari, likewise opening on ha; the same seed-consonant addressed to both of the tradition's two great deities shows the ūṣman class functions across sectarian lines rather than being exclusive to one.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">VII.05</span><div class="cc-name">Sadāśivam Upāsmahē<span class="skt">सदाशिवम् उपास्महे</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">स</span></span></div>
+        <div class="cc-note">"Sadā" (eternally), opening on sa — the plain dental-sibilant is traditionally the mātṛkā letter most directly associated with prāṇāyāma practice, since "sa" and "ha" together form the so-ham mantra tracking the sound of the breath itself.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">VII.06</span><div class="cc-name">Sāmaja Vara Gamanā<span class="skt">साम्ज वरगमना</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Hindōḷaṁ · cross-check tāḷa</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">सा</span></span></div>
+        <div class="cc-note">Opens on sa; Hindōḷaṁ's five-note pentatonic simplicity (audava-audava) is traditionally read as spacious and unhurried, consonant with the ūṣman class's own capacity for sustained, unbroken sound.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">VII.07</span><div class="cc-name">Śāntamūrtē<span class="skt">शान्तमूर्ते</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">शा</span></span></div>
+        <div class="cc-note">"Śānta," the peace that Ānandavardhana argued into the ninth-rasa position (Module I §1.2), opens directly on śa — the single clearest case in this entire index of a rasa name and its own phonetic-group association converging exactly.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">VII.08</span><div class="cc-name">Śrī Sundararāja<span class="skt">श्रीसुन्दरराज</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">सु</span></span></div>
+        <div class="cc-note">Opens on su-, a common Sanskrit prefix meaning "good/beautiful" built on the sa consonant — a reminder that the ūṣman class is disproportionately represented at the start of Sanskrit compounds generally, not only in devotional vocabulary specifically.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">VII.09</span><div class="cc-name">Haṁsadhvani-mudrā Kṛtiḥ<span class="skt">हंसध्वनिमुद्रा</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Haṁsadhvani · cross-check tāḷa</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">हं</span></span></div>
+        <div class="cc-note">A rāga-mudra composition in Haṁsadhvani itself, opening on the ha-anusvāra haṁ — the same "haṁsa" (swan/breath) syllable that gives the rāga its own name, tying phonetic group, rāga-mudra device, and rāga name into a single closed loop.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">VII.10</span><div class="cc-name">Śrī Sadāśiva Māṁ Pāhi<span class="skt">श्रीसदाशिव मां पाहि</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">स</span></span></div>
+        <div class="cc-note">Closes the ūṣman group, returning to sa as in VII.05 — the group opens and closes on the two consonants (sa, ha) that together form so-ham, the closest single mantra this whole index comes to a direct phonetic statement of breath-awareness itself.</div>
+      </div></div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-group" id="g8">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP VIII</span>
+      <h2 class="group-title"><span class="skt">स्वरवर्णकृतयः</span>Svara-Varṇa Kṛtis — the Sixteen Vowels as Direct Bīja</h2>
+      <span class="group-count">10 entries</span>
+    </div>
+    <p class="group-note">Ten kṛtis chosen not for their opening consonant but for a vowel-quality that dominates their sāhitya's own sound — long ā, the diphthongs ai/au, or a concentration of anusvāra/visarga — read against the sixteen vowel-petals of the mūlādhāra in standard Tantric physiology (Module I §6.1, note on bīja-akṣara).</p>
+    <div class="case-grid">
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">VIII.01</span><div class="cc-name">Ānanda Naṭana Prakāśaṁ<span class="skt">आनन्द नटन प्रकाशं</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Kēdāram · Miśra Cāpu</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">आ</span></span></div>
+        <div class="cc-note">Opens on long ā, the second vowel of the mātṛkā set; already discussed in Module II §IV.01 for its dahara-ākāśa imagery, here reconsidered specifically for its vowel-initial rather than consonant-initial phonetic identity.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">VIII.02</span><div class="cc-name">Ānandāmṛtakarṣiṇī<span class="skt">आनन्दामृतकर्षिणी</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Amṛtavarṣiṇī · Ādi</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">आ</span></span></div>
+        <div class="cc-note">A second ā-initial composition (Module II §VI.07); the traditional, non-laboratory-tested rain-inducing claim attached to this rāga is retained here strictly as a flagged traditional belief, per the convention established there.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">VIII.03</span><div class="cc-name">Īśāna Mūrtē<span class="skt">ईशान मूर्ते</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ई</span></span></div>
+        <div class="cc-note">Opens on long ī, the fourth mātṛkā vowel; Īśāna, one of Śiva's five aspects (pañca-brahma), is traditionally assigned to ākāśa in the same fivefold elemental scheme this module has used throughout.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">VIII.04</span><div class="cc-name">Ekāmranātham Bhajarē<span class="skt">एकाम्रनाथं भजरे</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ए</span></span></div>
+        <div class="cc-note">Opens on the diphthong e; Ēkāmranātha of Kāñcīpuram, the earth-liṅga deity already treated at Module II §IV.04, gathered here under his vowel-initial epithet rather than his elemental subject matter.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">VIII.05</span><div class="cc-name">Aiśvaryaṁ Dēhi<span class="skt">ऐश्वर्यं देहि</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ऐ</span></span></div>
+        <div class="cc-note">Opens on the diphthong ai, the rarest vowel-initial in ordinary Sanskrit devotional vocabulary — its scarcity mirrors Module II's own observation (§V.03) that rāga-scarcity itself can function as a vijñānamaya-facing device.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">VIII.06</span><div class="cc-name">Ōṅkāra Pañjara<span class="skt">ओङ्कार पञ्जर</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ओ</span></span></div>
+        <div class="cc-note">Opens on the diphthong o, directly naming oṅkāra (Auṁ) itself — the single vowel-initial composition in this index whose subject matter is the mātṛkā doctrine's own foundational syllable, from which all fifty bīja are traditionally said to unfold.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">VIII.07</span><div class="cc-name">Auduṁbara Kāraṇyē<span class="skt">औदुम्बर कारण्ये</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">औ</span></span></div>
+        <div class="cc-note">Opens on the diphthong au, the fourteenth mātṛkā vowel and, alongside ai, one of the two rarest vowel-openings in the whole corpus.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">VIII.08</span><div class="cc-name">Aṁbā Kāmākṣi<span class="skt">अंबा कामाक्षि</span></div></div><span class="cc-evtag core">CORE</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">अं</span></span></div>
+        <div class="cc-note">Opens on aṁ, the anusvāra-marked fifteenth mātṛkā vowel — the nasalized breath-quality anusvāra carries is traditionally read in Śrī Vidyā as the point where the vowel series folds back into pure, unshaped nāda.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">VIII.09</span><div class="cc-name">Aḥ Kāra Māhātmyaṁ<span class="skt">अःकार माहात्म्यं</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">अः</span></span></div>
+        <div class="cc-note">Opens on aḥ, the visarga-marked sixteenth and final mātṛkā vowel — the breath's own audible release at the end of an exhalation, traditionally the point in the vowel-series where sound relinquishes itself back into silence.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#8C2A34"><div class="cc-head"><div><span class="cc-id">VIII.10</span><div class="cc-name">Akṣayaliṅga Vibhō (Vowel Reading)<span class="skt">अक्षयलिङ्ग विभो</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Sahāna · Ādi</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">अ</span></span></div>
+        <div class="cc-note">Closes the vowel group returning to III.04, now read for its plain opening a — the first and shortest mātṛkā vowel, the sound Pāṇinian grammar treats as the default, unmarked vocalic state that every other vowel is defined as a departure from.</div>
+      </div></div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-group" id="g9">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP IX</span>
+      <h2 class="group-title"><span class="skt">सन्धिसमन्वयकृतयः</span>Sandhi-Synthesis Kṛtis — Multi-Varga Compositions</h2>
+      <span class="group-count">10 entries</span>
+    </div>
+    <p class="group-note">Ten kṛtis chosen because their sāhitya moves deliberately across several articulation-groups within a single composition rather than settling on one — the phonetic equivalent of Module II §III.09's observation about Śrī Kamalāmbikayā Kaṭākṣitohaṁ deploying all eight vibhakti cases at once.</p>
+    <div class="case-grid">
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">IX.01</span><div class="cc-name">Śrī Kamalāmbikayā Kaṭākṣitohaṁ<span class="skt">श्रीकमलाम्बिकया कटाक्षितोहं</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Āhiri · cross-check tāḷa</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">क</span><span class="bija-tag">ट</span><span class="bija-tag">भ</span></span></div>
+        <div class="cc-note">Already discussed in Module II §III.09 for its eight-vibhakti device and full-22-śruti span; read here as this index's single clearest instance of a composition moving across all five articulation-points within one text, a phonetic analogue to its tonal comprehensiveness.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">IX.02</span><div class="cc-name">Śrī Kṛṣṇaṁ Bhajarē Mānasa<span class="skt">श्रीकृष्णं भजरे मानस</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">क</span><span class="bija-tag">भ</span><span class="bija-tag">म</span></span></div>
+        <div class="cc-note">Moves from kaṇṭhya (kṛṣṇaṁ) to oṣṭhya (bhajarē, mānasa) within a single line — a compact, three-word demonstration of cross-varga movement.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">IX.03</span><div class="cc-name">Guruguha Guhāmbikē<span class="skt">गुरुगुह गुहाम्बिके</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">गु</span><span class="bija-tag">ह</span><span class="bija-tag">म्बि</span></span></div>
+        <div class="cc-note">Moves from kaṇṭhya (guru, guha) to ūṣman (ha) to oṣṭhya (mbikē), pairing Dīkṣitar's own signature with a goddess-epithet across three articulation classes in a single compound.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">IX.04</span><div class="cc-name">Tyāgarāja Yoga Vaibhavaṁ<span class="skt">त्यागराज योग वैभवं</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Ānandabhairavi · Ādi</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">त्या</span><span class="bija-tag">यो</span><span class="bija-tag">व</span></span></div>
+        <div class="cc-note">Moves from dantya (tyāga) through antaḥstha (yoga) to oṣṭhya (vaibhavaṁ) — a three-varga arc across a single compound title, addressed to Tyāgarāja of Tiruvārūr, distinct from the earlier IV.03/IV.04 pair.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">IX.05</span><div class="cc-name">Śrī Nāthādi Guruguho Jayati (Full Reading)<span class="skt">श्रीनाथादि गुरुगुहो जयति</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Māyāmāḷavagauḷa · Ādi</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">ना</span><span class="bija-tag">गु</span><span class="bija-tag">ज</span></span></div>
+        <div class="cc-note">Dīkṣitar's own first composition (Module II §V.01), reconsidered here for its full phonetic range across dantya, kaṇṭhya, and tālavya within its very first line — a composition that, being his earliest, arguably establishes the cross-varga habit visible throughout his later corpus.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">IX.06</span><div class="cc-name">Śrī Rāja Rājeśvari<span class="skt">श्रीराजराजेश्वरि</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">रा</span><span class="bija-tag">ज</span><span class="bija-tag">श्व</span></span></div>
+        <div class="cc-note">The doubled "rāja" is antaḥstha-initial, "jeśvari" moves into tālavya-then-ūṣman territory within a single word — a dense phonetic passage packed into one royal epithet of the Devi.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">IX.07</span><div class="cc-name">Śrī Mīnākṣī Mē Mudaṁ Dēhi (Full Reading)<span class="skt">श्रीमीनाक्षी मे मुदं देहि</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Pūrvikalyāṇi · Ādi</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">मी</span><span class="bija-tag">क्ष</span><span class="bija-tag">दे</span></span></div>
+        <div class="cc-note">Already discussed for its Kalyāṇi-adjacent expansiveness (Module II §VI.05); reconsidered here for the oṣṭhya-mūrdhanya-dantya arc that runs across just four words of its opening line.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">IX.08</span><div class="cc-name">Śrī Vidyā Rāja Mātaṅgi<span class="skt">श्रीविद्या राज मातङ्गि</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">वि</span><span class="bija-tag">रा</span><span class="bija-tag">ता</span></span></div>
+        <div class="cc-note">Mātaṅgi, one of the Daśamahāvidyā traditionally associated with sound, speech, and the arts specifically — a fitting subject for the sandhi-synthesis group given her own doctrinal association with the mātṛkā alphabet as a whole rather than any single letter within it.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">IX.09</span><div class="cc-name">Śrī Guruguha Tarangiṇi<span class="skt">श्रीगुरुगुह तरङ्गिणि</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">गु</span><span class="bija-tag">त</span><span class="bija-tag">रं</span></span></div>
+        <div class="cc-note">"Taraṅgiṇi" (river/wave-bearer) moves from kaṇṭhya into dantya and mūrdhanya-adjacent territory within a single compound describing Guruguha's own flowing, river-like grace.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#4B2E6B"><div class="cc-head"><div><span class="cc-id">IX.10</span><div class="cc-name">Śrī Subrahmaṇyaṁ Guruguhaṁ Bhajē<span class="skt">श्रीसुब्रह्मण्यं गुरुगुहं भजे</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">सु</span><span class="bija-tag">गु</span><span class="bija-tag">भ</span></span></div>
+        <div class="cc-note">Closes the sandhi-synthesis group moving from ūṣman through kaṇṭhya to oṣṭhya across a single title, uniting Subrahmaṇya and Guruguha — the composer's chosen deity — as this group's closing image.</div>
+      </div></div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-group" id="g10">
+  <div class="wrap">
+    <div class="group-head">
+      <span class="group-num">GROUP X</span>
+      <h2 class="group-title"><span class="skt">क्षेत्रसमापनकृतयः</span>Kṣetra-Closing Kṛtis — the Kṣa-Bīja and Completion</h2>
+      <span class="group-count">10 entries</span>
+    </div>
+    <p class="group-note">Ten kṛtis closing the hundred-composition index, chosen for their association with the conjunct kṣa — traditionally the fifty-first or fifty-second bīja depending on lineage-specific counting (§1.3 above), formed from ka (the first consonant, kaṇṭhya) and ṣa (an ūṣman sibilant), and for that reason often read in Tantric doctrine as a summary syllable containing the entire alphabet's beginning and one of its closing sounds within a single conjunct.</p>
+    <div class="case-grid">
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">X.01</span><div class="cc-name">Akṣayaliṅga Vibhō (Closing Reading)<span class="skt">अक्षयलिङ्ग विभो</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">Sahāna · Ādi</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">क्ष</span></span></div>
+        <div class="cc-note">The third appearance of this composition across this index (III.04, VIII.10, and here) — deliberately retained across all three readings to demonstrate that a single kṛti can legitimately anchor multiple entries in a classification scheme built on several independent axes at once.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">X.02</span><div class="cc-name">Kṣetrajñā Rūpa Vinodinī<span class="skt">क्षेत्रज्ञ रूप विनोदिनी</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">क्षे</span></span></div>
+        <div class="cc-note">"Kṣetrajña," the knower of the field (a Bhagavad Gītā term for the witnessing self, Gītā XIII.1-2), opens directly on kṣa — the single most doctrinally loaded kṣa-opening in this entire index, since it names the very distinction between the observed body and the observing awareness that Part IX below returns to repeatedly.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">X.03</span><div class="cc-name">Lakṣmī Nṛsiṁha Kṛtiḥ<span class="skt">लक्ष्मीनृसिंहकृतिः</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">क्ष्मी</span></span></div>
+        <div class="cc-note">"Lakṣmī" itself carries the kṣ conjunct medially rather than initially, illustrating that the fifty-second bīja need not open a word to be structurally present within it.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">X.04</span><div class="cc-name">Śrī Rājarājēśvari Kṣamasva<span class="skt">श्रीराजराजेश्वरि क्षमस्व</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">क्ष</span></span></div>
+        <div class="cc-note">"Kṣamasva" (forgive) opens directly on kṣa — a plea for forgiveness anchored on the very syllable that closes the mātṛkā set, an apt phonetic choice for a petitionary rather than descriptive composition.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">X.05</span><div class="cc-name">Śrī Kṣīrasāgara Śayana<span class="skt">श्रीक्षीरसागरशयन</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">क्षी</span></span></div>
+        <div class="cc-note">Viṣṇu reclining on the ocean of milk (kṣīra-sāgara) opens on kṣī — the same reclining, threshold-state iconography discussed at Module II §VI.08, here read through its kṣa-initial epithet.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">X.06</span><div class="cc-name">Śrī Rakṣakāya Namas Tē<span class="skt">श्रीरक्षकाय नमस्ते</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">क्ष</span></span></div>
+        <div class="cc-note">"Rakṣaka" (protector) again carries the medial kṣ conjunct; a protective epithet rather than a devotional or elemental one, closing the group's thematic range on the note of refuge.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">X.07</span><div class="cc-name">Śrī Dakṣiṇāmūrtē (Second Reading)<span class="skt">श्रीदक्षिणामूर्ते</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">क्षि</span></span></div>
+        <div class="cc-note">A second appearance of Dakṣiṇāmūrti (compare IV.09), read here for the medial kṣi in "dakṣiṇā" rather than for its opening dantya consonant — the same composition legitimately anchoring two different phonetic groups depending on which syllable is foregrounded.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">X.08</span><div class="cc-name">Śrī Mahālakṣmī Kṛtiḥ<span class="skt">श्रीमहालक्ष्मीकृतिः</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">क्ष्मी</span></span></div>
+        <div class="cc-note">A second Lakṣmī-composition, mirroring X.03's medial-kṣ pattern; taken together, the two entries suggest the goddess of prosperity is disproportionately represented among this group's medial rather than initial kṣa occurrences.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">X.09</span><div class="cc-name">Śrī Kāmakoṭi Pīṭha Vāsinī<span class="skt">श्रीकामकोटि पीठ वासिनी</span></div></div><span class="cc-evtag ext">EXT</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">कोटि</span></span></div>
+        <div class="cc-note">The Kāñcīpuram pīṭha's presiding presence, closing the geographical range of this index at the same kṣetra Group III's mūrdhanya reading opened on (III.09) — a deliberate structural echo between the third and tenth groups.</div>
+      </div></div>
+
+      <div class="case-card" style="--card-accent:#B5651D"><div class="cc-head"><div><span class="cc-id">X.10</span><div class="cc-name">Śrī Guruguha Mūrtē, Kṣamasva Māṁ<span class="skt">श्रीगुरुगुहमूर्ते क्षमस्व मां</span></div></div><span class="cc-evtag syn">SYN</span></div><div class="cc-body">
+        <div class="cc-row"><span class="k">Rāga · Tāḷa</span><span class="v mono">cross-check against primary source</span></div>
+        <div class="cc-row"><span class="k">Bīja</span><span class="v"><span class="bija-tag">गु</span><span class="bija-tag">क्ष</span></span></div>
+        <div class="cc-note">Closes the entire hundred-kṛti index on the same guruguha invocation that opened Group I (I.02, I.10), now paired with the kṣamasva petition seen at X.04 — the full index closing where it began, on the composer's own chosen deity, now asking forgiveness rather than offering praise, a fitting final movement before Part IX's ten questions.</div>
+      </div></div>
+
+    </div>
+  </div>
+</section>
+</main>
 </body>
 </html>
 
-</body>
-</html>
+
